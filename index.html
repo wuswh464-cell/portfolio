@@ -208,11 +208,22 @@
   /* ---------- 作品 ---------- */
   .works-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:clamp(14px,1.6vw,24px)}
   .work{
+    display:block;color:inherit;
     border:1px solid var(--line);border-radius:16px;overflow:hidden;
     background:var(--surface);transition:transform .45s,border-color .45s;
   }
   .work:hover{transform:translateY(-6px);border-color:rgba(255,255,255,.22)}
-  .work-media{aspect-ratio:4 / 5;overflow:hidden;background:#0E0E0F}
+  .work-media{position:relative;aspect-ratio:4 / 5;overflow:hidden;background:#0E0E0F}
+  .work-media::after{
+    content:"查看项目 →";
+    position:absolute;left:14px;bottom:14px;
+    display:inline-flex;align-items:center;height:32px;padding:0 15px;border-radius:999px;
+    background:rgba(10,10,11,.62);border:1px solid rgba(255,255,255,.18);
+    backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);
+    font-size:11px;letter-spacing:.1em;color:#fff;
+    opacity:0;transform:translateY(8px);transition:opacity .35s,transform .35s;
+  }
+  .work:hover .work-media::after{opacity:1;transform:none}
   .work-media img{width:100%;height:100%;object-fit:cover;transition:transform .6s}
   .work:hover .work-media img{transform:scale(1.04)}
   .work-meta{padding:18px 18px 22px;border-top:1px solid var(--line)}
@@ -333,7 +344,7 @@
                 <div class="rule"></div>
                 <div class="en">SU SHUI XING</div>
               </div>
-              <div class="back-foot">董槟源 · 产品设计</div>
+              <div class="back-foot">产品设计 · 2026</div>
             </div>
           </div>
         </div>
@@ -352,7 +363,7 @@
       <span class="en">Selected Projects 01–03</span>
     </div>
     <div class="works-grid">
-      <article class="work reveal">
+      <a class="work reveal" href="work.html?p=rv">
         <div class="work-media"><img src="assets/03-rv.jpg" alt="Free Life 拖挂式可伸展房车" loading="lazy"></div>
         <div class="work-meta">
           <span class="no">01</span>
@@ -360,9 +371,9 @@
           <span class="en">Expandable Trailer</span>
           <p>收纳 3,800mm，展开 5,100mm。纵向拉伸扩展、顶部升降、驻车支撑——把居住与行驶两种状态叠进一个体积里。</p>
         </div>
-      </article>
+      </a>
 
-      <article class="work reveal">
+      <a class="work reveal" href="work.html?p=baroll">
         <div class="work-media"><img src="assets/01-baroll.jpg" alt="Baroll 便携滚珠洗衣机" loading="lazy"></div>
         <div class="work-meta">
           <span class="no">02</span>
@@ -370,9 +381,9 @@
           <span class="en">Portable Roller Washer</span>
           <p>宿舍、租房、差旅里洗小件。体积拆成两层，洗涤球可拆；滚珠代替搅拌，交互移出机身。</p>
         </div>
-      </article>
+      </a>
 
-      <article class="work reveal">
+      <a class="work reveal" href="work.html?p=toaster">
         <div class="work-media"><img src="assets/02-toaster.jpg" alt="早安 · 吐司机" loading="lazy"></div>
         <div class="work-meta">
           <span class="no">03</span>
@@ -380,7 +391,7 @@
           <span class="en">Perfect Breakfast Time</span>
           <p>上班上学前的八分钟。上下分体、按压出仓、抽屉式接屑盘，把操作压到三步，把安全做进造型。</p>
         </div>
-      </article>
+      </a>
     </div>
   </section>
 

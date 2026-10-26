@@ -1,0 +1,426 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>作品详情 · 董槟源</title>
+<meta name="description" content="董槟源（溯水行）产品设计项目详情：项目背景、设计判断、结构拆解与完整图版。">
+<style>
+  :root{
+    --bg:#0A0A0B;
+    --surface:#141414;
+    --line:rgba(255,255,255,.08);
+    --ink:#EDEDED;
+    --muted:#8A8A8A;
+    --accent:#C0432C;
+    --font:"Helvetica Neue",Inter,"PingFang SC","Hiragino Sans GB","Microsoft YaHei",Arial,sans-serif;
+  }
+  *{box-sizing:border-box}
+  html{scroll-behavior:smooth}
+  body{
+    margin:0;background:var(--bg);color:var(--ink);
+    font-family:var(--font);-webkit-font-smoothing:antialiased;
+    text-rendering:optimizeLegibility;
+  }
+  a{color:inherit;text-decoration:none}
+  img{max-width:100%}
+  ::selection{background:var(--accent);color:#fff}
+
+  /* ---------- 顶栏 ---------- */
+  .bar{
+    position:fixed;top:0;left:0;right:0;z-index:20;height:62px;
+    display:flex;align-items:center;justify-content:space-between;gap:20px;
+    padding:0 clamp(20px,4vw,56px);
+    background:rgba(10,10,11,.74);backdrop-filter:blur(16px);-webkit-backdrop-filter:blur(16px);
+    border-bottom:1px solid rgba(255,255,255,.07);
+  }
+  .bar-brand{display:flex;align-items:baseline;gap:12px;font-size:13px;letter-spacing:.04em}
+  .bar-brand em{font-style:normal;font-size:9px;letter-spacing:.22em;color:var(--muted)}
+  .bar-nav{display:flex;align-items:center;gap:clamp(14px,2vw,26px);font-size:12px;color:#B5B5B5}
+  .bar-nav a{transition:.25s}
+  .bar-nav a:hover{color:#fff}
+  .bar-count{font-size:9px;letter-spacing:.22em;color:var(--muted)}
+  .prog{position:absolute;left:0;bottom:-1px;height:2px;width:0;background:var(--accent)}
+
+  /* ---------- 容器 ---------- */
+  .wrap{max-width:1280px;margin:0 auto;padding:0 clamp(20px,4vw,56px)}
+
+  /* ---------- 头部 ---------- */
+  .case-hero{padding:clamp(112px,17vh,168px) 0 0}
+  .eyebrow{
+    display:flex;align-items:center;gap:10px;flex-wrap:wrap;
+    font-size:10px;letter-spacing:.24em;color:var(--muted);text-transform:uppercase;
+  }
+  .eyebrow em{font-style:normal;color:var(--accent)}
+  .case-hero h1{
+    margin:clamp(22px,3.4vh,34px) 0 0;
+    font-size:clamp(34px,5.6vw,70px);font-weight:400;line-height:1.14;letter-spacing:.01em;
+  }
+  .case-hero .en{
+    margin-top:14px;font-size:10px;letter-spacing:.3em;color:var(--muted);
+  }
+  .lede{
+    margin:clamp(24px,4vh,38px) 0 0;max-width:46ch;
+    font-size:clamp(14px,1.3vw,17px);line-height:1.8;color:#B9B9B9;
+  }
+
+  .case-art{
+    margin:clamp(34px,5.6vh,60px) 0 0;border:1px solid var(--line);border-radius:6px;
+    overflow:hidden;background:#0E0E0F;
+  }
+  .case-art img{
+    display:block;width:100%;aspect-ratio:16/10;object-fit:cover;object-position:50% 30%;
+  }
+
+  .facts{
+    display:grid;grid-template-columns:repeat(4,minmax(0,1fr));
+    margin-top:clamp(28px,4vh,44px);
+    border-top:1px solid var(--line);border-bottom:1px solid var(--line);
+  }
+  .facts div{padding:22px 24px 24px;border-left:1px solid var(--line)}
+  .facts div:first-child{border-left:0;padding-left:0}
+  .facts dt{font-size:9px;letter-spacing:.22em;color:var(--muted)}
+  .facts dd{margin:10px 0 0;font-size:13.5px;line-height:1.75;color:#D2D2D2}
+
+  /* ---------- 章节 ---------- */
+  .s{
+    display:grid;grid-template-columns:minmax(110px,3fr) 9fr;
+    gap:clamp(20px,4vw,64px);
+    padding:clamp(56px,8.5vh,104px) 0;
+    border-top:1px solid var(--line);
+  }
+  .s-side{position:sticky;top:96px;align-self:start}
+  .s-side b{
+    display:block;font-size:clamp(34px,3.8vw,54px);font-weight:200;line-height:1;
+    letter-spacing:-.02em;color:rgba(255,255,255,.26);
+  }
+  .s-side span{
+    display:block;margin-top:12px;font-size:9px;letter-spacing:.26em;color:var(--accent);
+  }
+  .s-body h2{
+    margin:0 0 clamp(22px,3vh,32px);font-size:clamp(20px,2vw,27px);font-weight:500;
+  }
+
+  .quote{
+    margin:0;max-width:24ch;
+    font-size:clamp(24px,3.2vw,42px);font-weight:400;line-height:1.55;letter-spacing:.01em;
+  }
+  .quote .mark{color:var(--accent)}
+
+  .point{
+    display:grid;grid-template-columns:auto 1fr;gap:clamp(14px,2vw,26px);
+    padding:clamp(22px,3vh,30px) 0;border-bottom:1px solid var(--line);
+  }
+  .point:first-child{border-top:1px solid var(--line)}
+  .point b{font-size:11px;letter-spacing:.14em;color:var(--accent);padding-top:5px}
+  .point h3{margin:0 0 10px;font-size:clamp(15px,1.4vw,17.5px);font-weight:500;line-height:1.5}
+  .point p{margin:0;max-width:62ch;font-size:14.5px;line-height:1.9;color:#A6A6A6}
+
+  .board{margin:0}
+  .board img{
+    display:block;width:100%;height:auto;cursor:zoom-in;
+    border:1px solid var(--line);border-radius:4px;background:#0E0E0F;
+  }
+  .board figcaption{
+    display:flex;justify-content:space-between;gap:20px;flex-wrap:wrap;
+    margin-top:16px;font-size:11px;line-height:1.7;color:var(--muted);
+  }
+  .board figcaption em{font-style:normal;color:#6F6F6F}
+
+  /* ---------- 下一篇 ---------- */
+  .next{
+    display:flex;align-items:center;justify-content:space-between;gap:24px;
+    margin:clamp(36px,6vh,72px) 0 0;padding:clamp(26px,3.6vw,46px);
+    border:1px solid var(--line);border-radius:16px;
+    background:linear-gradient(120deg,#151515,#0C0C0D 70%);
+    transition:border-color .4s,transform .4s;
+  }
+  .next:hover{border-color:rgba(255,255,255,.24);transform:translateY(-4px)}
+  .next small{font-size:9px;letter-spacing:.26em;color:var(--muted)}
+  .next h2{margin:12px 0 0;font-size:clamp(21px,2.8vw,36px);font-weight:400;line-height:1.3}
+  .next .arrow{
+    flex:0 0 auto;width:58px;height:58px;border-radius:999px;
+    display:flex;align-items:center;justify-content:center;
+    border:1px solid rgba(255,255,255,.2);font-size:16px;
+    transition:transform .4s,background .4s,color .4s;
+  }
+  .next:hover .arrow{transform:rotate(-45deg) translateX(-6px);background:#EDEDED;color:#0A0A0B}
+
+  footer{padding:clamp(40px,6vh,64px) 0 clamp(46px,7vh,72px)}
+  .foot{display:flex;justify-content:space-between;gap:20px;flex-wrap:wrap;
+    border-top:1px solid var(--line);padding-top:26px;font-size:11px;color:#7C7C7C}
+  .foot a{color:#B5B5B5}
+  .foot a:hover{color:#fff}
+
+  /* ---------- 放大 ---------- */
+  .lb{
+    position:fixed;inset:0;z-index:60;display:flex;align-items:center;justify-content:center;
+    padding:4vh 3vw;background:rgba(6,6,7,.95);
+    opacity:0;pointer-events:none;transition:opacity .3s;
+  }
+  .lb.on{opacity:1;pointer-events:auto}
+  .lb img{max-width:100%;max-height:92vh;object-fit:contain;border-radius:2px}
+  .lb .hint{
+    position:absolute;bottom:18px;left:0;right:0;text-align:center;
+    font-size:10px;letter-spacing:.2em;color:rgba(255,255,255,.4);
+  }
+
+  /* ---------- 入场 ---------- */
+  .rv{opacity:0;transform:translateY(18px);
+    transition:opacity .8s cubic-bezier(.16,1,.3,1),transform .8s cubic-bezier(.16,1,.3,1)}
+  .rv.in{opacity:1;transform:none}
+
+  @media (max-width:900px){
+    .facts{grid-template-columns:repeat(2,minmax(0,1fr))}
+    .facts div:nth-child(3){border-left:0;padding-left:0}
+    .facts div:nth-child(n+3){border-top:1px solid var(--line)}
+    .s{grid-template-columns:1fr}
+    .s-side{position:static;display:flex;align-items:baseline;gap:14px}
+    .s-side b{font-size:30px}
+    .s-side span{margin-top:0}
+    .case-art img{aspect-ratio:4/3}
+  }
+  @media (max-width:640px){
+    .bar-count{display:none}
+    .board figcaption{flex-direction:column;gap:6px}
+    .next{padding:22px}
+    .next .arrow{width:46px;height:46px}
+  }
+  @media (prefers-reduced-motion:reduce){
+    html{scroll-behavior:auto}
+    .rv{opacity:1;transform:none;transition:none}
+    .prog{transition:none}
+  }
+  @media print{
+    .bar,.next,.lb{display:none !important}
+    body{background:#fff;color:#111}
+    .case-hero{padding-top:0}
+  }
+</style>
+</head>
+<body>
+
+<header class="bar">
+  <a class="bar-brand" href="index.html">董槟源<em>SU SHUI XING</em></a>
+  <div class="bar-count" id="barCount">CASE 01 / 03</div>
+  <nav class="bar-nav">
+    <a href="index.html#works">全部作品</a>
+    <a href="mailto:1695766805@qq.com">联系</a>
+  </nav>
+  <div class="prog" id="prog"></div>
+</header>
+
+<main class="wrap">
+  <section class="case-hero">
+    <div class="eyebrow"><span id="cat">拖挂式可伸展房车</span><em>·</em><span>PRODUCT DESIGN</span><em>·</em><span id="caseNo">01</span></div>
+    <h1 id="title"></h1>
+    <div class="en" id="en"></div>
+    <p class="lede" id="lede"></p>
+
+    <figure class="case-art">
+      <img id="heroImg" src="" alt="">
+    </figure>
+
+    <dl class="facts" id="facts"></dl>
+  </section>
+
+  <section class="s">
+    <div class="s-side"><b>01</b><span>判断 / THESIS</span></div>
+    <div class="s-body">
+      <h2>设计判断</h2>
+      <p class="quote" id="quote"></p>
+    </div>
+  </section>
+
+  <section class="s">
+    <div class="s-side"><b>02</b><span>拆解 / BREAKDOWN</span></div>
+    <div class="s-body">
+      <h2>关键判断</h2>
+      <div id="points"></div>
+    </div>
+  </section>
+
+  <section class="s">
+    <div class="s-side"><b>03</b><span>图版 / PLATES</span></div>
+    <div class="s-body">
+      <h2>完整图版</h2>
+      <figure class="board">
+        <img id="boardImg" src="" alt="" loading="lazy">
+        <figcaption><span id="figcap"></span><em>点击图版放大 / ESC 关闭</em></figcaption>
+      </figure>
+    </div>
+  </section>
+
+  <a class="next" id="nextBand" href="#">
+    <div>
+      <small>NEXT PROJECT</small>
+      <h2 id="nextTitle"></h2>
+    </div>
+    <span class="arrow">→</span>
+  </a>
+</main>
+
+<footer class="wrap">
+  <div class="foot">
+    <span>董槟源 · 产品设计　|　溯水行 SU SHUI XING</span>
+    <span><a href="mailto:1695766805@qq.com">1695766805@qq.com</a>　·　微信 waw1233215679</span>
+  </div>
+</footer>
+
+<div class="lb" id="lb" role="dialog" aria-modal="true" aria-label="图版放大">
+  <img id="lbImg" src="" alt="">
+  <div class="hint">点击任意处关闭</div>
+</div>
+
+<script>
+(function(){
+  var projects = {
+    rv:{
+      no:'01',
+      cat:'拖挂式可伸展房车',
+      title:'Free Life 拖挂式可伸展房车',
+      en:'EXPANDABLE TRAILER',
+      lede:'城市里最大的约束不是预算，是「停哪儿」。所以这个项目先把收纳尺寸定死，再让使用尺寸从里面长出来。',
+      img:'assets/03-rv.jpg',
+      facts:[
+        ['尺寸','收纳 3,800 mm → 展开 5,100 mm'],
+        ['结构','纵向拉伸扩展 · 顶部升降 · 驻车支撑'],
+        ['内部','智能玻璃 · 床桌转换 · 陶瓷加热炊具'],
+        ['形态','行驶态 / 驻车态，两种状态一个体积']
+      ],
+      quote:'房车的门槛从来不是「想不想去」，而是「停不停得下、买不买得起」。',
+      points:[
+        {h:'形态分两态',p:'行驶态 3,800 mm 进得了城市车位，驻车态拉伸到 5,100 mm 才谈舒适——先用收纳尺寸过关，再谈居住体验。'},
+        {h:'把两种时间叠进一个体积',p:'床与桌共用一套模板，垂直放置成床、侧面放置成桌，同一块空间在白天与夜晚承担不同角色。'},
+        {h:'用玻璃代替墙',p:'智能玻璃通过透明度切换实现采光与隐私，减少实体隔断，也减轻了伸展结构的重量。'},
+        {h:'站立区是隐形刚需',p:'陶瓷加热炊具与局部升顶保证站立高度——房车体验里，「能不能站直」比「有没有沙发」更影响长期居住意愿。'}
+      ],
+      fig:'图版含：行驶 / 驻车双形态 · 尺寸对比 · 内部空间 · 智能玻璃 · 床桌转换'
+    },
+    baroll:{
+      no:'02',
+      cat:'便携式小型洗衣机',
+      title:'Baroll 便携滚珠洗衣机',
+      en:'PORTABLE ROLLER WASHER',
+      lede:'一台只在「洗的那一瞬间」才需要体积的洗衣机。把洗涤单元从机身里拆出来，是这个小产品最关键的一次结构判断。',
+      img:'assets/01-baroll.jpg',
+      facts:[
+        ['品类','便携式小型洗衣机'],
+        ['场景','宿舍 / 租房 / 差旅，洗涤袜子与内衣'],
+        ['材料','ABS 主体 · TPU 软胶 · PVC 透明件 · PVA 液晶板'],
+        ['交互','机身触控 + 手机物联（模式 / 温度 / 脱水 / 排水 / 定时）']
+      ],
+      quote:'小件衣物的痛点是「不值得开一次大洗衣机」，而不是「洗不干净」。',
+      points:[
+        {h:'把体积拆成两层',p:'洗涤球可拆卸、可独立清洗，机身只承担驱动与收纳——机器不需要一直「是个桶」。'},
+        {h:'用滚珠代替搅拌',p:'滚珠拍打与揉搓形成物理洗涤，减少用水与衣物缠绕，也更适合内衣这类不能强力搅动的织物。'},
+        {h:'把交互移出机身',p:'机身只留最少按键与一块小屏，模式、水温、脱水与排水定时交给手机——这是「物联」在这个价位段唯一说得通的理由。'}
+      ],
+      fig:'图版含：产品渲染 · 三视图与形态推演 · 材质标注 · 分层拆解 · 使用步骤'
+    },
+    toaster:{
+      no:'03',
+      cat:'双槽吐司机 / 早餐机',
+      title:'早安 · 吐司机',
+      en:'PERFECT BREAKFAST TIME',
+      lede:'早餐机的核心不是「能烤」，而是「少一步」。这个项目把上班上学前的十分钟，当成一条要被压缩到极致的时间路径。',
+      img:'assets/02-toaster.jpg',
+      facts:[
+        ['品类','双槽吐司机 / 早餐机'],
+        ['场景','上班、上学前的快节奏早餐'],
+        ['结构','上下分体 · 按压出仓 · 抽屉式接屑盘 · 防烫外壳'],
+        ['造型','圆角方形 · 黑白撞色 · 双槽与单槽组合']
+      ],
+      quote:'快节奏场景里，用户的耐心不在「功能多少」，而在「几步完成」。',
+      points:[
+        {h:'操作压到三步',p:'放、按、取。取件用按压弹出而不是拉杆，手不需要找角度。'},
+        {h:'把安全做进造型',p:'防烫不是贴一行警示语，而是让外壳与发热区在形态上就分开——圆角与分体结构同时承担了「看起来安心」和「真的不烫」。'},
+        {h:'清洁变成 5 秒动作',p:'接屑盘做成抽拉抽屉。这类「每天都会脏一点」的机器，维护成本才是长期体验的分水岭。'}
+      ],
+      fig:'图版含：产品渲染 · 细节特写 · 防烫结构 · 三视图与尺寸标注'
+    }
+  };
+  var order = ['rv','baroll','toaster'];
+  var key = (new URLSearchParams(location.search).get('p') || 'rv').toLowerCase();
+  if (!projects[key]) key = 'rv';
+  var p = projects[key];
+  var idx = order.indexOf(key);
+
+  function set(id, txt){ var el = document.getElementById(id); if (el) el.textContent = txt; }
+
+  set('cat', p.cat);
+  set('title', p.title);
+  set('en', p.en);
+  set('lede', p.lede);
+  set('caseNo', p.no);
+  set('quote', p.quote);
+  set('figcap', p.fig);
+  set('barCount', 'CASE ' + p.no + ' / 03');
+  document.title = p.title + '｜董槟源';
+
+  var hero = document.getElementById('heroImg');
+  hero.src = p.img;
+  hero.alt = p.title + ' 设计图版';
+  var board = document.getElementById('boardImg');
+  board.src = p.img;
+  board.alt = p.title + ' 完整设计图版';
+
+  document.getElementById('facts').innerHTML = p.facts.map(function(f){
+    return '<div><dt>' + f[0] + '</dt><dd>' + f[1] + '</dd></div>';
+  }).join('');
+
+  document.getElementById('points').innerHTML = p.points.map(function(o,i){
+    var n = ('0' + (i+1)).slice(-2);
+    return '<div class="point"><b>' + n + '</b><div><h3>' + o.h + '</h3><p>' + o.p + '</p></div></div>';
+  }).join('');
+
+  var nextKey = order[(idx + 1) % order.length];
+  var nextP = projects[nextKey];
+  document.getElementById('nextTitle').textContent = nextP.title;
+  document.getElementById('nextBand').href = 'work.html?p=' + nextKey;
+
+  // 滚动进度 + 顶栏状态
+  var prog = document.getElementById('prog');
+  function onScroll(){
+    var h = document.documentElement.scrollHeight - window.innerHeight;
+    prog.style.width = (h > 0 ? (window.scrollY / h) * 100 : 0) + '%';
+  }
+  window.addEventListener('scroll', onScroll, {passive:true});
+  onScroll();
+
+  // 入场
+  document.querySelectorAll('.s, .case-hero h1, .lede, .case-art, .facts, .next').forEach(function(el){
+    el.classList.add('rv');
+  });
+  if ('IntersectionObserver' in window){
+    var io = new IntersectionObserver(function(es){
+      es.forEach(function(e){
+        if (e.isIntersecting){ e.target.classList.add('in'); io.unobserve(e.target); }
+      });
+    }, {threshold:.12});
+    document.querySelectorAll('.rv').forEach(function(el){ io.observe(el); });
+  } else {
+    document.querySelectorAll('.rv').forEach(function(el){ el.classList.add('in'); });
+  }
+
+  // 图版放大
+  var lb = document.getElementById('lb');
+  var lbImg = document.getElementById('lbImg');
+  board.addEventListener('click', function(){
+    lbImg.src = board.src;
+    lbImg.alt = board.alt;
+    lb.classList.add('on');
+    document.body.style.overflow = 'hidden';
+  });
+  function closeLb(){
+    lb.classList.remove('on');
+    document.body.style.overflow = '';
+  }
+  lb.addEventListener('click', closeLb);
+  document.addEventListener('keydown', function(e){
+    if (e.key === 'Escape') closeLb();
+  });
+})();
+</script>
+</body>
+</html>
