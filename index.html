@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>董槟源｜产品设计 · 个人网站</title>
-<meta name="description" content="董槟源，产品设计本科。三个项目，三种约束，一套判断方法：便携滚珠洗衣机、双槽吐司机、可伸展房车。">
+<meta name="description" content="董槟源（溯水行），产品设计。三个项目，三种约束；结构、形态与场景，是我读产品的三条线索。">
 <style>
   :root{
     --bg:#0A0A0B;
@@ -142,42 +142,55 @@
   }
   .front{
     display:flex;flex-direction:column;justify-content:space-between;
-    padding:26px 24px;
-    color:#111;background:#c9c9c9;
+    padding:28px 26px;
+    color:#0A0A0B;background:#c9c9c9;
     background-image:
       repeating-linear-gradient(90deg,rgba(255,255,255,.10) 0 1px,transparent 1px 3px),
       linear-gradient(118deg,#d2d2d2 0%,#8b8b8b 16%,#f1f1f1 33%,#6e6e6e 50%,#c6c6c6 66%,#7d7d7d 82%,#eaeaea 100%);
   }
-  .front .top{position:relative;z-index:2;font-size:9px;letter-spacing:.22em;color:rgba(0,0,0,.62)}
-  .front .no{position:relative;z-index:2;font-size:clamp(76px,8.4vw,124px);font-weight:200;line-height:.86;letter-spacing:-.05em;color:rgba(0,0,0,.85)}
-  .front .name{position:relative;z-index:2;font-size:14px;font-weight:600;line-height:1.4;color:#05060A}
-  .front .en{position:relative;z-index:2;font-size:9px;letter-spacing:.18em;color:rgba(0,0,0,.7);margin-top:6px;text-transform:uppercase}
+  .front-top{
+    position:relative;z-index:2;display:flex;justify-content:space-between;
+    font-size:9px;letter-spacing:.22em;color:rgba(0,0,0,.62);
+  }
+  .front-name{position:relative;z-index:2}
+  .front-name .cn{
+    font-size:clamp(40px,4.4vw,58px);font-weight:500;line-height:1.08;
+    letter-spacing:.06em;color:#05060A;
+  }
+  .front-name .en{
+    margin-top:16px;font-size:9px;letter-spacing:.28em;color:rgba(0,0,0,.68);
+  }
+  .front-name .hair{
+    margin:22px 0 0;height:1px;width:56px;background:rgba(0,0,0,.42);
+  }
   .front::after{
     content:"";position:absolute;inset:0;z-index:1;
     background:linear-gradient(115deg,transparent 35%,rgba(255,255,255,.1) 50%,transparent 65%);
     mix-blend-mode:screen;
   }
-  .dim{
-    position:relative;z-index:2;
-    display:flex;align-items:center;gap:8px;width:fit-content;margin-bottom:10px;
-    font-size:9px;letter-spacing:.16em;color:rgba(0,0,0,.72);
+  .front::before{
+    content:"";position:absolute;inset:0;z-index:1;
+    background:linear-gradient(to top,rgba(255,255,255,.16),transparent 42%);
   }
-  .dim i{display:block;flex:0 0 30px;height:1px;background:rgba(0,0,0,.55);position:relative}
-  .dim i::before,.dim i::after{
-    content:"";position:absolute;top:-2.5px;width:1px;height:6px;background:rgba(0,0,0,.55);
-  }
-  .dim i::before{left:0}
-  .dim i::after{right:0}
 
   .back{
     transform:rotateY(180deg);
     display:flex;flex-direction:column;justify-content:space-between;
-    padding:26px;background:linear-gradient(160deg,#191919,#0E0E0F 70%);
+    padding:28px 26px;
+    background:linear-gradient(160deg,#1B1B1C,#0C0C0D 72%);
   }
-  .back .num{font-size:clamp(48px,5vw,76px);font-weight:200;line-height:1;letter-spacing:-.03em;color:#fff}
-  .back .cn{font-size:clamp(15px,1.3vw,18px);line-height:1.45;color:#E4E4E4}
-  .back .en{font-size:9px;letter-spacing:.2em;color:var(--muted);margin-top:10px;text-transform:uppercase}
-  .back .rule{height:1px;background:rgba(255,255,255,.12);margin:18px 0}
+  .back-top{
+    display:flex;justify-content:space-between;
+    font-size:9px;letter-spacing:.22em;color:rgba(255,255,255,.4);
+  }
+  .back-name{display:flex;flex-direction:column;gap:18px}
+  .back-name .cn{
+    font-size:clamp(38px,4.2vw,54px);font-weight:300;line-height:1.15;
+    letter-spacing:.18em;color:#F2F2F2;
+  }
+  .back-name .rule{height:1px;width:100%;background:rgba(255,255,255,.14)}
+  .back-name .en{font-size:9px;letter-spacing:.3em;color:rgba(255,255,255,.56)}
+  .back-foot{font-size:10px;letter-spacing:.06em;color:rgba(255,255,255,.42)}
 
   .stage-label{
     position:absolute;left:clamp(20px,3vw,40px);bottom:clamp(20px,4vh,44px);z-index:3;
@@ -288,7 +301,7 @@
       <div class="kicker">PORTFOLIO / 2026 <em>·</em> 产品设计</div>
       <h1>把约束<br>翻译成<br>产品</h1>
       <p class="en-line">Constraint → Form · Structure · Interaction</p>
-      <p class="hero-sub">董槟源，产品设计本科。三个项目，三种约束，一套判断方法。</p>
+      <p class="hero-sub">董槟源 · 产品设计。三个项目，三种约束；结构、形态与场景，是我读产品的三条线索。</p>
       <div class="hero-actions">
         <a class="btn solid" href="#works">查看作品</a>
         <a class="btn ghost" href="mailto:1695766805@qq.com">发邮件</a>
@@ -306,28 +319,28 @@
         <div class="tilt">
           <div class="card" id="card">
             <div class="face front">
-              <div class="top">SELECTED WORK</div>
-              <div class="no" id="frontNo">01</div>
-              <div>
-                <div class="dim"><i></i><span id="dimText">3,800 → 5,100 mm</span></div>
-                <div class="name" id="frontName">Free Life 拖挂式可伸展房车</div>
-                <div class="en" id="frontEn">Expandable Trailer</div>
+              <div class="front-top"><span>PRODUCT DESIGN</span><span>2026</span></div>
+              <div class="front-name">
+                <div class="cn">董槟源</div>
+                <div class="en">DONG BINYUAN</div>
+                <div class="hair"></div>
               </div>
             </div>
             <div class="face back">
-              <span class="num" id="cardNum">01</span>
-              <div>
+              <div class="back-top"><span>DESIGN NAME</span><span>设计名</span></div>
+              <div class="back-name">
+                <div class="cn">溯水行</div>
                 <div class="rule"></div>
-                <div class="cn" id="cardCn">Free Life 拖挂式可伸展房车</div>
-                <div class="en" id="cardEn">Expandable Trailer</div>
+                <div class="en">SU SHUI XING</div>
               </div>
+              <div class="back-foot">董槟源 · 产品设计</div>
             </div>
           </div>
         </div>
       </div>
 
       <div class="stage-label">
-        <b>SELECTED WORKS</b><span id="labelNo">01</span> / 03<span id="labelName"></span>
+        <b>PORTFOLIO</b><span>2026 · 产品设计</span>
       </div>
     </div>
   </section>
@@ -438,42 +451,6 @@
     });
   }, {threshold:.12});
   document.querySelectorAll('.reveal').forEach(function(el){ io.observe(el); });
-
-  // 自转卡：每转满一圈换一个作品
-  var works = [
-    {no:'01', cn:'Free Life 拖挂式可伸展房车', en:'Expandable Trailer', dim:'3,800 → 5,100 mm'},
-    {no:'02', cn:'Baroll 便携滚珠洗衣机', en:'Portable Roller Washer', dim:'φ 96 × 210 mm'},
-    {no:'03', cn:'早安 · 吐司机', en:'Perfect Breakfast Time', dim:'双槽 · 上下分体'}
-  ];
-  var idx = 0, card = document.getElementById('card');
-  var els = {
-    fNo: document.getElementById('frontNo'),
-    fName: document.getElementById('frontName'),
-    fEn: document.getElementById('frontEn'),
-    no: document.getElementById('cardNum'),
-    cn: document.getElementById('cardCn'),
-    en: document.getElementById('cardEn'),
-    dim: document.getElementById('dimText'),
-    labelNo: document.getElementById('labelNo'),
-    labelName: document.getElementById('labelName')
-  };
-  function paint(i){
-    var w = works[i];
-    els.fNo.textContent = w.no;
-    els.fName.textContent = w.cn;
-    els.fEn.textContent = w.en;
-    els.no.textContent = w.no;
-    els.cn.textContent = w.cn;
-    els.en.textContent = w.en;
-    els.dim.textContent = w.dim;
-    els.labelNo.textContent = w.no;
-    els.labelName.textContent = w.cn;
-  }
-  paint(0);
-  card.addEventListener('animationiteration', function(){
-    idx = (idx + 1) % works.length;
-    paint(idx);
-  });
 </script>
 </body>
 </html>
