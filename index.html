@@ -130,8 +130,7 @@
     transform-style:preserve-3d;
     animation:spin 22s linear infinite;
   }
-  @keyframes spin{to{transform:rotateY(360deg)}}
-  .stage3d:hover .card{animation-play-state:paused}
+  @keyframes spin{from{transform:rotateY(0deg)}to{transform:rotateY(360deg)}}
 
   .face{
     position:absolute;inset:0;border-radius:14px;overflow:hidden;
@@ -265,7 +264,8 @@
   @media (prefers-reduced-motion:reduce){
     html{scroll-behavior:auto}
     .reveal{opacity:1;transform:none;transition:none}
-    .card,.tilt,.stage-bg{animation:none}
+    .tilt,.stage-bg{animation:none}
+    /* 卡片保留翻转：正反面信息都在这张名片上 */
   }
 
   /* ---------- 响应式 ---------- */
