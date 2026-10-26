@@ -3,466 +3,462 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>董槟源｜产品设计作品集 · 三个约束下的产品判断</title>
-<meta name="description" content="董槟源，产品设计专业本科。概念作品集：便携滚珠洗衣机、双槽吐司机、拖挂式可伸展房车。">
+<title>董槟源｜产品设计 · 个人网站</title>
+<meta name="description" content="董槟源，产品设计本科。三个项目，三种约束，一套判断方法：便携滚珠洗衣机、双槽吐司机、可伸展房车。">
 <style>
   :root{
-    --paper:#F4F2ED;
-    --paper-2:#EDEAE3;
-    --ink:#141414;
-    --muted:#6C6860;
-    --line:#D9D4C8;
+    --bg:#0A0A0B;
+    --surface:#141414;
+    --glass:rgba(255,255,255,.04);
+    --line:rgba(255,255,255,.08);
+    --ink:#EDEDED;
+    --muted:#8A8A8A;
     --accent:#C0432C;
-    --max:1180px;
-    --font:"Helvetica Neue","PingFang SC","Hiragino Sans GB","Microsoft YaHei",Arial,sans-serif;
+    --font:"Helvetica Neue",Inter,"PingFang SC","Hiragino Sans GB","Microsoft YaHei",Arial,sans-serif;
   }
   *{box-sizing:border-box}
   html{scroll-behavior:smooth}
   body{
-    margin:0;background:var(--paper);color:var(--ink);font-family:var(--font);
-    -webkit-font-smoothing:antialiased;line-height:1.65;
-    font-feature-settings:"tnum";
+    margin:0;background:var(--bg);color:var(--ink);font-family:var(--font);
+    -webkit-font-smoothing:antialiased;line-height:1.6;
   }
   img{display:block;max-width:100%}
   a{color:inherit;text-decoration:none}
 
   /* ---------- 顶部 ---------- */
-  .progress{position:fixed;top:0;left:0;height:2px;width:0;background:var(--accent);z-index:60}
   .site-head{
-    position:fixed;top:0;left:0;right:0;z-index:50;
+    position:fixed;top:0;left:0;right:0;z-index:60;
     display:flex;align-items:center;justify-content:space-between;
-    padding:16px clamp(18px,4vw,44px);
-    background:rgba(244,242,237,.82);
-    backdrop-filter:saturate(160%) blur(12px);
-    -webkit-backdrop-filter:saturate(160%) blur(12px);
-    border-bottom:1px solid var(--line);
+    padding:16px clamp(20px,4vw,56px);
+    border-bottom:1px solid transparent;
+    transition:background .35s,border-color .35s,backdrop-filter .35s;
   }
-  .brand{display:flex;align-items:baseline;gap:12px;font-size:12px;letter-spacing:.18em}
-  .brand b{font-weight:600;letter-spacing:.22em}
-  .brand span{color:var(--muted);letter-spacing:.06em;font-size:11px}
-  .head-nav{display:flex;align-items:center;gap:clamp(10px,2vw,26px);font-size:11px;letter-spacing:.14em;color:var(--muted)}
-  .head-nav a{position:relative;padding:4px 0;transition:color .25s}
+  .site-head.solid{
+    background:rgba(10,10,11,.72);border-bottom-color:var(--line);
+    backdrop-filter:saturate(160%) blur(14px);
+    -webkit-backdrop-filter:saturate(160%) blur(14px);
+  }
+  .brand{display:flex;align-items:baseline;gap:10px;font-size:13px;letter-spacing:.06em}
+  .brand span{font-size:10px;letter-spacing:.2em;color:var(--muted)}
+  .head-nav{display:flex;align-items:center;gap:clamp(14px,2.4vw,30px);font-size:12px;color:var(--muted)}
+  .head-nav a{transition:color .25s}
   .head-nav a:hover{color:var(--ink)}
-  .head-nav a::after{content:"";position:absolute;left:0;bottom:0;height:1px;width:0;background:var(--accent);transition:width .3s}
-  .head-nav a:hover::after{width:100%}
-  .print-btn{
-    border:1px solid var(--line);background:transparent;color:var(--muted);
-    font:inherit;font-size:10px;letter-spacing:.14em;padding:7px 12px;cursor:pointer;
-    transition:.25s;
+  .pill{
+    border:1px solid rgba(255,255,255,.18);border-radius:999px;
+    padding:8px 16px;font-size:11px;letter-spacing:.08em;color:var(--ink);
+    transition:background .25s,border-color .25s,color .25s;
   }
-  .print-btn:hover{border-color:var(--ink);color:var(--ink)}
+  .pill:hover{background:#EDEDED;border-color:#EDEDED;color:#0A0A0B}
 
-  /* ---------- 封面 ---------- */
-  .wrap{max-width:var(--max);margin:0 auto;padding:0 clamp(18px,4vw,44px)}
-  .hero{min-height:88vh;display:flex;flex-direction:column;justify-content:center;padding-top:96px;padding-bottom:56px}
-  .kicker{font-size:11px;letter-spacing:.3em;color:var(--muted);margin-bottom:clamp(28px,6vh,62px)}
+  /* ---------- Hero ---------- */
+  .hero{
+    display:grid;grid-template-columns:48fr 52fr;min-height:100vh;
+  }
+  .hero-copy{
+    display:flex;flex-direction:column;justify-content:center;
+    padding:120px clamp(24px,4vw,64px) 72px clamp(24px,5.5vw,88px);
+  }
+  .kicker{font-size:10px;letter-spacing:.28em;color:var(--muted);margin-bottom:clamp(26px,5vh,52px)}
   .kicker em{font-style:normal;color:var(--accent)}
   .hero h1{
-    font-size:clamp(38px,7.4vw,88px);line-height:1.14;letter-spacing:-.035em;
-    font-weight:600;margin:0 0 clamp(26px,4vh,44px);
+    margin:0;font-size:clamp(40px,7vw,86px);font-weight:500;
+    line-height:1.05;letter-spacing:.01em;
   }
-  .hero h1 .thin{font-weight:300;color:var(--muted)}
-  .hero-sub{max-width:52ch;font-size:clamp(15px,1.35vw,17px);color:#33312D;margin:0 0 clamp(40px,7vh,72px)}
-  .hero-meta{
-    display:grid;grid-template-columns:1fr 1fr 1.45fr 1fr;gap:clamp(14px,3vw,40px);
-    border-top:1px solid var(--line);padding-top:22px;max-width:980px;
+  .en-line{
+    margin:clamp(20px,3vh,30px) 0 0;font-size:10px;letter-spacing:.24em;
+    color:var(--muted);text-transform:uppercase;
   }
-  .hero-meta dt{font-size:10px;letter-spacing:.2em;color:var(--muted);margin-bottom:8px}
-  .hero-meta dd{margin:0;font-size:14px;line-height:1.5}
+  .hero-sub{
+    margin:clamp(26px,4vh,40px) 0 0;max-width:34ch;
+    font-size:clamp(14px,1.25vw,16px);color:#B9B9B9;
+  }
+  .hero-actions{display:flex;flex-wrap:wrap;gap:12px;margin-top:clamp(32px,5vh,48px)}
+  .btn{
+    display:inline-flex;align-items:center;justify-content:center;
+    height:44px;padding:0 24px;border-radius:999px;
+    font-size:13px;letter-spacing:.06em;transition:.28s;
+  }
+  .btn.solid{background:#EDEDED;color:#0A0A0B}
+  .btn.solid:hover{background:#fff}
+  .btn.ghost{border:1px solid rgba(255,255,255,.18);color:var(--ink)}
+  .btn.ghost:hover{border-color:rgba(255,255,255,.4);background:var(--glass)}
 
-  .scroll-cue{display:flex;align-items:center;gap:12px;margin-top:clamp(36px,6vh,64px);font-size:10px;letter-spacing:.22em;color:var(--muted)}
-  .scroll-cue i{display:block;width:42px;height:1px;background:var(--line);position:relative;overflow:hidden}
-  .scroll-cue i::after{content:"";position:absolute;inset:0;background:var(--ink);animation:slide 2.2s ease-in-out infinite}
-  @keyframes slide{0%{transform:translateX(-100%)}55%{transform:translateX(0)}100%{transform:translateX(100%)}}
+  /* ---------- Hero 右侧舞台 ---------- */
+  .hero-stage{
+    position:relative;overflow:hidden;
+    display:flex;align-items:center;justify-content:center;
+    min-height:100vh;background:#070708;
+  }
+  .stage-bg{
+    position:absolute;inset:0;width:100%;height:100%;
+    object-fit:cover;filter:blur(22px) brightness(.62) contrast(1.1);
+    animation:drift 44s ease-in-out infinite alternate;
+  }
+  @keyframes drift{
+    from{transform:scale(1.06)}
+    to{transform:scale(1.16) translateY(-1.5%)}
+  }
+  .dots{
+    position:absolute;inset:0;
+    background-image:radial-gradient(rgba(255,255,255,.55) 1px,transparent 1px);
+    background-size:26px 26px;opacity:.07;
+    mask-image:radial-gradient(circle at 52% 46%,#000 30%,transparent 78%);
+    -webkit-mask-image:radial-gradient(circle at 52% 46%,#000 30%,transparent 78%);
+  }
+  .glow{
+    position:absolute;inset:-20%;
+    background:radial-gradient(circle at 54% 46%,rgba(255,255,255,.09),transparent 46%);
+  }
+  .grain{
+    position:absolute;inset:0;opacity:.05;pointer-events:none;
+    background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='140' height='140'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='3'/%3E%3C/filter%3E%3Crect width='140' height='140' filter='url(%23n)'/%3E%3C/svg%3E");
+  }
+  .vignette{position:absolute;inset:0;box-shadow:inset 0 0 180px 40px rgba(0,0,0,.92)}
 
-  /* ---------- 项目 ---------- */
-  .project{padding:clamp(54px,9vh,96px) 0 clamp(40px,7vh,72px);border-top:1px solid var(--line);scroll-margin-top:84px}
-  #closing{scroll-margin-top:84px}
-  .p-index{
-    font-size:clamp(46px,8vw,96px);font-weight:200;line-height:1;letter-spacing:-.04em;
-    color:var(--accent);margin-bottom:18px;
+  .stage3d{perspective:1200px;position:relative;z-index:2}
+  .tilt{
+    transform-style:preserve-3d;
+    transform:rotateX(-8deg) rotateZ(1.5deg);
+    animation:float 8s ease-in-out infinite;
   }
-  .p-title{display:flex;flex-wrap:wrap;align-items:flex-end;gap:8px 22px;margin:0 0 14px}
-  .p-title h2{font-size:clamp(28px,4.4vw,50px);line-height:1.1;letter-spacing:-.025em;font-weight:600;margin:0}
-  .p-title .en{font-size:12px;letter-spacing:.16em;color:var(--muted);padding-bottom:6px}
-  .p-lead{max-width:60ch;font-size:clamp(15px,1.3vw,17px);color:#33312D;margin:0 0 clamp(30px,5vh,48px)}
+  @keyframes float{
+    0%,100%{translate:0 0}
+    50%{translate:0 -8px}
+  }
+  .card{
+    position:relative;width:min(30vw,400px);aspect-ratio:3 / 4;
+    transform-style:preserve-3d;
+    animation:spin 22s linear infinite;
+  }
+  @keyframes spin{to{transform:rotateY(360deg)}}
+  .stage3d:hover .card{animation-play-state:paused}
 
-  .p-spec{
-    display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:1px;
-    background:var(--line);border:1px solid var(--line);margin-bottom:clamp(30px,5vh,48px);
+  .face{
+    position:absolute;inset:0;border-radius:14px;overflow:hidden;
+    backface-visibility:hidden;-webkit-backface-visibility:hidden;
+    border:1px solid rgba(255,255,255,.14);
+    box-shadow:0 40px 90px rgba(0,0,0,.6);
+    background:#0F0F10;
   }
-  .p-spec > div{background:var(--paper);padding:16px 14px}
-  .p-spec dt{font-size:10px;letter-spacing:.18em;color:var(--muted);margin-bottom:7px}
-  .p-spec dd{margin:0;font-size:13px;line-height:1.55}
+  .front{padding:14px}
+  .face img{width:100%;height:100%;object-fit:cover;border-radius:8px}
+  .front img{transform:scale(2.3);transform-origin:50% 4%;object-position:50% 4%}
+  .front::after{
+    content:"";position:absolute;inset:0;
+    background:linear-gradient(115deg,transparent 35%,rgba(255,255,255,.16) 50%,transparent 65%);
+    mix-blend-mode:screen;
+  }
+  .dim{
+    position:absolute;left:26px;top:26px;z-index:3;
+    display:flex;align-items:center;gap:8px;width:fit-content;
+    padding:6px 10px;border-radius:999px;
+    background:rgba(10,10,11,.55);backdrop-filter:blur(6px);
+    font-size:9px;letter-spacing:.16em;color:rgba(255,255,255,.8);
+  }
+  .dim i{display:block;flex:0 0 34px;height:1px;background:rgba(255,255,255,.55);position:relative}
+  .dim i::before,.dim i::after{
+    content:"";position:absolute;top:-2.5px;width:1px;height:6px;background:rgba(255,255,255,.55);
+  }
+  .dim i::before{left:0}
+  .dim i::after{right:0}
 
-  .p-judge{
-    display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.55fr);gap:clamp(18px,4vw,48px);
-    margin-bottom:clamp(30px,5vh,52px);
+  .back{
+    transform:rotateY(180deg);
+    display:flex;flex-direction:column;justify-content:space-between;
+    padding:26px;background:linear-gradient(160deg,#191919,#0E0E0F 70%);
   }
-  .p-judge h3{font-size:11px;letter-spacing:.2em;color:var(--accent);margin:0 0 10px;font-weight:500}
-  .p-judge p{margin:0 0 12px;font-size:14px;color:#33312D}
-  .p-judge p:last-child{margin-bottom:0}
-  .p-judge strong{font-weight:600;color:var(--ink)}
+  .back .num{font-size:clamp(48px,5vw,76px);font-weight:200;line-height:1;letter-spacing:-.03em;color:#fff}
+  .back .cn{font-size:clamp(15px,1.3vw,18px);line-height:1.45;color:#E4E4E4}
+  .back .en{font-size:9px;letter-spacing:.2em;color:var(--muted);margin-top:10px;text-transform:uppercase}
+  .back .rule{height:1px;background:rgba(255,255,255,.12);margin:18px 0}
 
-  .p-figure{margin:0}
-  .p-figure .frame{border:1px solid var(--line);background:#fff;overflow:hidden;cursor:zoom-in}
-  .p-figure img{width:100%;height:auto;transition:filter .4s}
-  .p-figure .frame:hover img{filter:brightness(.985)}
-  .p-figure figcaption{
-    display:flex;justify-content:space-between;gap:16px;
-    margin-top:10px;font-size:10px;letter-spacing:.14em;color:var(--muted);
+  .stage-label{
+    position:absolute;left:clamp(20px,3vw,40px);bottom:clamp(20px,4vh,44px);z-index:3;
+    font-size:10px;letter-spacing:.18em;color:rgba(255,255,255,.55);
   }
-  .p-figure figcaption em{font-style:normal;color:var(--accent)}
+  .stage-label b{font-weight:500;color:rgba(255,255,255,.85)}
+  .stage-label span{margin-left:14px;letter-spacing:.06em}
 
-  /* ---------- 注释 / 结论 ---------- */
-  .closing{margin-top:clamp(50px,8vh,90px);border:1px solid var(--line);padding:clamp(26px,4vw,46px);background:var(--paper-2)}
-  .closing h2{font-size:clamp(20px,2.6vw,28px);letter-spacing:-.02em;margin:0 0 16px;font-weight:600}
-  .closing p{margin:0 0 10px;font-size:14px;color:#33312D;max-width:66ch}
-  .closing p:last-child{margin:0}
+  /* ---------- 通用段落 ---------- */
+  .section{padding:clamp(72px,12vh,140px) clamp(24px,5.5vw,88px);border-top:1px solid var(--line);scroll-margin-top:76px}
+  .sec-head{display:flex;flex-wrap:wrap;align-items:baseline;gap:12px 22px;margin-bottom:clamp(32px,5vh,56px)}
+  .sec-head h2{margin:0;font-size:clamp(24px,3.2vw,38px);font-weight:500;letter-spacing:.01em}
+  .sec-head .en{font-size:10px;letter-spacing:.24em;color:var(--muted);text-transform:uppercase}
 
-  footer{margin-top:clamp(56px,9vh,96px);border-top:1px solid var(--line);padding:36px 0 64px}
-  .foot-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:24px}
-  .foot-grid dt{font-size:10px;letter-spacing:.2em;color:var(--muted);margin-bottom:7px}
-  .foot-grid dd{margin:0;font-size:13px}
-  .foot-grid dd a{border-bottom:1px solid var(--line);transition:border-color .25s,color .25s}
-  .foot-grid dd a:hover{border-color:var(--accent);color:var(--accent)}
-  .foot-grid dd .wx{display:block;color:var(--muted);margin-top:5px;letter-spacing:.02em}
-  .foot-note{margin-top:32px;font-size:11px;color:var(--muted);letter-spacing:.04em}
+  /* ---------- 作品 ---------- */
+  .works-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:clamp(14px,1.6vw,24px)}
+  .work{
+    border:1px solid var(--line);border-radius:16px;overflow:hidden;
+    background:var(--surface);transition:transform .45s,border-color .45s;
+  }
+  .work:hover{transform:translateY(-6px);border-color:rgba(255,255,255,.22)}
+  .work-media{aspect-ratio:4 / 5;overflow:hidden;background:#0E0E0F}
+  .work-media img{width:100%;height:100%;object-fit:cover;transition:transform .6s}
+  .work:hover .work-media img{transform:scale(1.04)}
+  .work-meta{padding:18px 18px 22px;border-top:1px solid var(--line)}
+  .work-meta .no{font-size:10px;letter-spacing:.2em;color:var(--accent)}
+  .work-meta h3{margin:8px 0 4px;font-size:16px;font-weight:500;line-height:1.4}
+  .work-meta .en{font-size:9px;letter-spacing:.18em;color:var(--muted);text-transform:uppercase}
+  .work-meta p{margin:12px 0 0;font-size:12.5px;color:#9C9C9C;line-height:1.7}
 
-  /* ---------- 放大查看 ---------- */
-  .lightbox{
-    position:fixed;inset:0;z-index:100;background:rgba(16,15,14,.94);
-    display:none;align-items:center;justify-content:center;overflow:hidden;
-    opacity:0;transition:opacity .25s;
+  /* ---------- 能力 ---------- */
+  .cap-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:clamp(14px,1.6vw,24px)}
+  .cap{
+    position:relative;padding:clamp(24px,2.6vw,34px);border-radius:16px;
+    border:1px solid var(--line);background:var(--glass);overflow:hidden;
   }
-  .lightbox.open{display:flex;opacity:1}
-  .lb-stage{width:100%;height:100%;display:flex;align-items:center;justify-content:center;cursor:grab}
-  .lb-stage.dragging{cursor:grabbing}
-  .lb-stage img{
-    max-width:none;width:auto;height:auto;
-    transform-origin:center center;will-change:transform;
-    user-select:none;-webkit-user-drag:none;
+  .cap::before{
+    content:"";position:absolute;inset:0;
+    background:radial-gradient(circle at 50% 0%,rgba(255,255,255,.07),transparent 62%);
   }
-  .lb-bar{
-    position:absolute;top:0;left:0;right:0;display:flex;align-items:center;justify-content:space-between;
-    padding:14px 18px;color:#CFCAC0;font-size:10px;letter-spacing:.18em;
-    background:linear-gradient(rgba(0,0,0,.5),transparent);
-  }
-  .lb-bar button{
-    background:transparent;border:1px solid rgba(255,255,255,.25);color:#E7E3DA;
-    font:inherit;font-size:10px;letter-spacing:.14em;padding:7px 12px;cursor:pointer;
-  }
-  .lb-bar button:hover{border-color:#fff;color:#fff}
+  .cap svg{position:relative;width:26px;height:26px;stroke:#DADADA;fill:none;stroke-width:1.2}
+  .cap h3{position:relative;margin:22px 0 10px;font-size:17px;font-weight:500}
+  .cap .en{position:relative;font-size:9px;letter-spacing:.2em;color:var(--muted);text-transform:uppercase}
+  .cap p{position:relative;margin:14px 0 0;font-size:13px;color:#9C9C9C;line-height:1.75}
+
+  /* ---------- 联系 ---------- */
+  .contact{border-top:1px solid var(--line);padding:clamp(72px,12vh,140px) clamp(24px,5.5vw,88px) 48px;scroll-margin-top:76px}
+  .contact h2{margin:0 0 28px;font-size:clamp(30px,4.4vw,56px);font-weight:500;line-height:1.1;letter-spacing:.01em}
+  .contact h2 em{font-style:normal;color:var(--muted);display:block;font-size:11px;letter-spacing:.24em;margin-top:16px;text-transform:uppercase}
+  .contact-lines{display:flex;flex-wrap:wrap;gap:12px 56px;margin-top:8px}
+  .contact-lines div{font-size:14px;color:#CFCFCF}
+  .contact-lines dt{font-size:9px;letter-spacing:.2em;color:var(--muted);margin-bottom:6px;text-transform:uppercase}
+  .contact-lines dd{margin:0}
+  .contact-lines a{border-bottom:1px solid rgba(255,255,255,.2);transition:.25s}
+  .contact-lines a:hover{border-color:var(--accent);color:var(--accent)}
+  footer{margin-top:clamp(56px,10vh,110px);border-top:1px solid var(--line);padding-top:22px;font-size:10px;letter-spacing:.14em;color:var(--muted);display:flex;justify-content:space-between;flex-wrap:wrap;gap:10px}
 
   /* ---------- 动效 ---------- */
-  .reveal{opacity:0;transform:translateY(22px);transition:opacity .8s cubic-bezier(.2,.7,.2,1),transform .8s cubic-bezier(.2,.7,.2,1)}
+  .reveal{opacity:0;transform:translateY(18px);transition:opacity .8s cubic-bezier(.2,.7,.2,1),transform .8s cubic-bezier(.2,.7,.2,1)}
   .reveal.in{opacity:1;transform:none}
   @media (prefers-reduced-motion:reduce){
     html{scroll-behavior:auto}
     .reveal{opacity:1;transform:none;transition:none}
-    .scroll-cue i::after{animation:none}
+    .card,.tilt,.stage-bg{animation:none}
   }
 
   /* ---------- 响应式 ---------- */
-  @media (max-width:820px){
-    .hero{min-height:auto;padding-top:104px}
-    .hero-meta{grid-template-columns:1fr 1fr}
-    .p-spec{grid-template-columns:repeat(2,minmax(0,1fr))}
-    .p-judge{grid-template-columns:1fr}
-    .foot-grid{grid-template-columns:1fr 1fr}
-    .head-nav a:not(.keep){display:none}
+  @media (max-width:900px){
+    .hero{grid-template-columns:1fr}
+    .hero-copy{padding:112px clamp(22px,6vw,48px) 48px}
+    .hero-stage{min-height:74vh}
+    .card{width:min(66vw,360px)}
+    .works-grid,.cap-grid{grid-template-columns:1fr}
   }
-  @media (max-width:520px){
-    .p-spec{grid-template-columns:1fr}
-    .foot-grid{grid-template-columns:1fr}
-    .hero-meta{grid-template-columns:1fr}
-    .p-figure figcaption{flex-direction:column;gap:4px}
+  @media (max-width:640px){
+    .head-nav a:not(.pill){display:none}
+    .stage-label{font-size:9px}
   }
 
-  /* ---------- 打印 / 导出 PDF ---------- */
+  /* ---------- 打印 ---------- */
   @media print{
     @page{size:A4;margin:12mm}
-    body{background:#fff}
-    .site-head,.progress,.lightbox,.print-btn,.scroll-cue,.head-nav{display:none !important}
-    .hero{min-height:auto;padding:0 0 18mm;page-break-after:always}
-    .project{border-top:none;padding:0 0 10mm;page-break-after:always}
-    .closing{background:#fff;page-break-inside:avoid}
+    body{background:#fff;color:#111}
+    .site-head,.hero-stage,.grain,.dots,.glow{display:none !important}
+    .hero{display:block;min-height:auto}
+    .hero-copy{padding:0 0 14mm}
+    .work,.cap{border-color:#ddd;background:#fff}
     .reveal{opacity:1 !important;transform:none !important}
-    .p-figure .frame{page-break-inside:avoid}
-    a[href]::after{content:""}
   }
 </style>
 </head>
 <body>
-<div class="progress" id="progress"></div>
 
-<header class="site-head">
-  <div class="brand"><b>董槟源</b><span>产品设计 · 概念项目三则</span></div>
+<header class="site-head" id="siteHead">
+  <a class="brand" href="#top">董槟源<span>产品设计</span></a>
   <nav class="head-nav">
-    <a href="#p1">01 洗衣机</a>
-    <a href="#p2">02 吐司机</a>
-    <a href="#p3">03 房车</a>
-    <a href="#closing">说明</a>
-    <button class="print-btn" id="printBtn">导出 PDF</button>
+    <a href="#works">作品</a>
+    <a href="#capabilities">能力</a>
+    <a href="#contact">联系</a>
+    <a class="pill" href="mailto:1695766805@qq.com">发邮件</a>
   </nav>
 </header>
 
 <main>
-  <!-- ================= 封面 ================= -->
-  <section class="hero wrap">
-    <div class="kicker">董槟源 / PRODUCT DESIGN / <em>SELECTED WORKS</em> / 2026</div>
-    <h1>三个约束下的<br><span class="thin">产品判断</span></h1>
-    <p class="hero-sub">
-      体积、时间、空间。三个项目分别对应一个真实约束：一台只洗小件的洗衣机、一条最短的早餐路径、一辆能在停车位里收起的房车。
-      这里放的不只是效果图，而是我怎样把约束翻译成结构、材料和交互。
-    </p>
-    <dl class="hero-meta">
-      <div><dt>姓名</dt><dd>董槟源</dd></div>
-      <div><dt>专业 / 学历</dt><dd>产品设计 · 本科</dd></div>
-      <div><dt>涉及能力</dt><dd>造型语言 / 结构推演 / CMF / 场景定义</dd></div>
-      <div><dt>呈现方式</dt><dd>03 个概念项目 · 点击可放大</dd></div>
-    </dl>
-    <div class="scroll-cue"><i></i><span>SCROLL</span></div>
-  </section>
-
-  <!-- ================= 01 Baroll ================= -->
-  <article class="project" id="p1">
-    <div class="wrap">
-      <div class="p-index reveal">01</div>
-      <div class="p-title reveal">
-        <h2>Baroll 便携滚珠洗衣机</h2>
-        <span class="en">PORTABLE ROLLER WASHER</span>
+  <!-- ============ Hero ============ -->
+  <section class="hero" id="top">
+    <div class="hero-copy">
+      <div class="kicker">PORTFOLIO / 2026 <em>·</em> 产品设计</div>
+      <h1>把约束<br>翻译成<br>产品</h1>
+      <p class="en-line">Constraint → Form · Structure · Interaction</p>
+      <p class="hero-sub">董槟源，产品设计本科。三个项目，三种约束，一套判断方法。</p>
+      <div class="hero-actions">
+        <a class="btn solid" href="#works">查看作品</a>
+        <a class="btn ghost" href="mailto:1695766805@qq.com">发邮件</a>
       </div>
-      <p class="p-lead reveal">
-        一台只在"洗的那一瞬间"才需要体积的洗衣机。把洗涤单元从机身里拆出来，是这个小产品最关键的一次结构判断。
-      </p>
-
-      <dl class="p-spec reveal">
-        <div><dt>品类</dt><dd>便携式小型洗衣机</dd></div>
-        <div><dt>场景</dt><dd>宿舍 / 租房 / 差旅，洗涤袜子与内衣</dd></div>
-        <div><dt>材料</dt><dd>ABS 主体 · TPU 软胶 · PVC 透明件 · PVA 液晶板</dd></div>
-        <div><dt>交互</dt><dd>机身触控 + 手机物联（模式 / 温度 / 脱水 / 排水 / 定时）</dd></div>
-      </dl>
-
-      <div class="p-judge reveal">
-        <div>
-          <h3>设计判断</h3>
-          <p>小件衣物的痛点是"不值得开一次大洗衣机"，而不是"洗不干净"。</p>
-        </div>
-        <div>
-          <p><strong>一、把体积拆成两层。</strong>洗涤球可拆卸、可独立清洗，机身只承担驱动与收纳——机器不需要一直"是个桶"。</p>
-          <p><strong>二、用滚珠代替搅拌。</strong>滚珠拍打与揉搓形成物理洗涤，减少用水与衣物缠绕，也更适合内衣这类不能强力搅动的织物。</p>
-          <p><strong>三、把交互移出机身。</strong>机身只留最少按键与一块小屏，模式、水温、脱水与排水定时交给手机——这是"物联"在这个价位段唯一说得通的理由。</p>
-        </div>
-      </div>
-
-      <figure class="p-figure reveal">
-        <div class="frame" data-full="assets/01-baroll.jpg">
-          <img src="assets/01-baroll.jpg" alt="Baroll 便携滚珠洗衣机设计版面：产品渲染、视图展示、材质标注、拆解与使用步骤" loading="lazy">
-        </div>
-        <figcaption><span>图版含：产品渲染 · 三视图与形态推演 · 材质标注 · 分层拆解 · 使用步骤</span><em>点击放大 / 滚轮缩放</em></figcaption>
-      </figure>
     </div>
-  </article>
 
-  <!-- ================= 02 吐司机 ================= -->
-  <article class="project" id="p2">
-    <div class="wrap">
-      <div class="p-index reveal">02</div>
-      <div class="p-title reveal">
-        <h2>早安 · 吐司机</h2>
-        <span class="en">PERFECT BREAKFAST TIME</span>
-      </div>
-      <p class="p-lead reveal">
-        早餐机的核心不是"能烤"，而是"少一步"。这个项目把上班上学前的十分钟，当成一条要被压缩到极致的时间路径。
-      </p>
+    <div class="hero-stage">
+      <img class="stage-bg" src="assets/bg.jpg" alt="" aria-hidden="true">
+      <div class="dots"></div>
+      <div class="glow"></div>
+      <div class="grain"></div>
+      <div class="vignette"></div>
 
-      <dl class="p-spec reveal">
-        <div><dt>品类</dt><dd>双槽吐司机 / 早餐机</dd></div>
-        <div><dt>场景</dt><dd>上班、上学前的快节奏早餐</dd></div>
-        <div><dt>结构</dt><dd>上下分体 · 按压出仓 · 抽屉式接屑盘 · 防烫外壳</dd></div>
-        <div><dt>造型</dt><dd>圆角方形，黑白撞色，双槽 + 单槽组合</dd></div>
-      </dl>
-
-      <div class="p-judge reveal">
-        <div>
-          <h3>设计判断</h3>
-          <p>快节奏场景里，用户的耐心不在"功能多少"，而在"几步完成"。</p>
-        </div>
-        <div>
-          <p><strong>一、操作压到三步。</strong>放、按、取。取件用按压弹出而不是拉杆，手不需要找角度。</p>
-          <p><strong>二、把安全做进造型。</strong>防烫不是贴一行警示语，而是让外壳与发热区在形态上就分开——圆角与分体结构同时承担了"看起来安心"和"真的不烫"。</p>
-          <p><strong>三、清洁变成 5 秒动作。</strong>接屑盘做成抽拉抽屉。这类"每天都会脏一点"的机器，维护成本才是长期体验的分水岭。</p>
+      <div class="stage3d">
+        <div class="tilt">
+          <div class="card" id="card">
+            <figure class="face front" style="margin:0">
+              <div class="dim"><i></i><span id="dimText">3,800 → 5,100 mm</span></div>
+              <img id="cardImg" src="assets/03-rv.jpg" alt="Free Life 拖挂式可伸展房车">
+            </figure>
+            <div class="face back">
+              <span class="num" id="cardNum">01</span>
+              <div>
+                <div class="rule"></div>
+                <div class="cn" id="cardCn">Free Life 拖挂式可伸展房车</div>
+                <div class="en" id="cardEn">Expandable Trailer</div>
+              </div>
+            </div>
+          </div>
         </div>
       </div>
 
-      <figure class="p-figure reveal">
-        <div class="frame" data-full="assets/02-toaster.jpg">
-          <img src="assets/02-toaster.jpg" alt="早安吐司机设计版面：产品渲染、细节图、防烫结构标注、三视图与尺寸" loading="lazy">
-        </div>
-        <figcaption><span>图版含：产品渲染 · 细节特写 · 防烫结构 · 三视图与尺寸标注</span><em>点击放大 / 滚轮缩放</em></figcaption>
-      </figure>
-    </div>
-  </article>
-
-  <!-- ================= 03 Free Life ================= -->
-  <article class="project" id="p3">
-    <div class="wrap">
-      <div class="p-index reveal">03</div>
-      <div class="p-title reveal">
-        <h2>Free Life 拖挂式可伸展房车</h2>
-        <span class="en">TRAILER RV EXTENSION</span>
+      <div class="stage-label">
+        <b>SELECTED WORKS</b><span id="labelNo">01</span> / 03<span id="labelName"></span>
       </div>
-      <p class="p-lead reveal">
-        城市里最大的约束不是预算，是"停哪儿"。所以这个项目先把收纳尺寸定死，再让使用尺寸从里面长出来。
-      </p>
-
-      <dl class="p-spec reveal">
-        <div><dt>品类</dt><dd>拖挂式可伸展房车</dd></div>
-        <div><dt>尺寸</dt><dd>收纳 3,800 mm → 展开 5,100 mm</dd></div>
-        <div><dt>结构</dt><dd>纵向拉伸扩展 · 顶部升降 · 驻车支撑</dd></div>
-        <div><dt>内部</dt><dd>智能玻璃 · 异型床-桌转换 · 陶瓷加热炊具 · 分区站立高度</dd></div>
-      </dl>
-
-      <div class="p-judge reveal">
-        <div>
-          <h3>设计判断</h3>
-          <p>房车的门槛从来不是"想不想去"，而是"停不停得下、买不买得起"。</p>
-        </div>
-        <div>
-          <p><strong>一、形态分两态。</strong>行驶态 3,800 mm 进得了城市车位，驻车态拉伸到 5,100 mm 才谈舒适——先用收纳尺寸过关，再谈居住体验。</p>
-          <p><strong>二、把两种时间叠进一个体积。</strong>床与桌共用一套模板，垂直放置成床、侧面放置成桌，同一块空间在白天与夜晚承担不同角色。</p>
-          <p><strong>三、用玻璃代替墙。</strong>智能玻璃通过透明度切换实现采光与隐私，减少实体隔断，也减轻了伸展结构的重量。</p>
-          <p><strong>四、站立区是隐形刚需。</strong>陶瓷加热炊具与局部升顶保证站立高度——房车体验里，"能不能站直"比"有没有沙发"更影响长期居住意愿。</p>
-        </div>
-      </div>
-
-      <figure class="p-figure reveal">
-        <div class="frame" data-full="assets/03-rv.jpg">
-          <img src="assets/03-rv.jpg" alt="Free Life 拖挂式可伸展房车设计版面：收纳与展开形态对比、尺寸标注、内部空间与家具转换" loading="lazy">
-        </div>
-        <figcaption><span>图版含：行驶/驻车双形态 · 尺寸对比 · 内部空间 · 智能玻璃 · 床-桌转换</span><em>点击放大 / 滚轮缩放</em></figcaption>
-      </figure>
-    </div>
-  </article>
-
-  <!-- ================= 说明 ================= -->
-  <section class="wrap" id="closing">
-    <div class="closing reveal">
-      <h2>关于这三个项目</h2>
-      <p>三个项目共用一套方法：先找一个真实约束（体积 / 时间 / 停车空间），再让形态、结构和交互都为这个约束让路，最后才谈造型。</p>
-      <p>它们也是我做产品设计的底层习惯——不把"好看"当成终点，而是把"约束被解决了多少"当成判断标准。这套判断在 AI 能快速出图的今天反而更值钱：图可以由工具生成，取舍不能。</p>
-      <p>如需完整过程稿（草图、建模、结构推演、CMF 方案），可联系我。</p>
     </div>
   </section>
 
-  <footer>
-    <div class="wrap">
-      <dl class="foot-grid">
-        <div><dt>作者</dt><dd>董槟源 · 产品设计（本科）</dd></div>
-        <div><dt>联系</dt><dd><a href="mailto:1695766805@qq.com">1695766805@qq.com</a><span class="wx">微信 waw1233215679</span></dd></div>
-        <div><dt>作品集</dt><dd>产品设计 · 概念项目三则</dd></div>
-      </dl>
-      <p class="foot-note">本页为静态作品集，可直接用浏览器打印为 PDF 投递；长图可点击放大查看细节。</p>
+  <!-- ============ 作品 ============ -->
+  <section class="section" id="works">
+    <div class="sec-head reveal">
+      <h2>三个项目</h2>
+      <span class="en">Selected Projects 01–03</span>
     </div>
-  </footer>
+    <div class="works-grid">
+      <article class="work reveal">
+        <div class="work-media"><img src="assets/03-rv.jpg" alt="Free Life 拖挂式可伸展房车" loading="lazy"></div>
+        <div class="work-meta">
+          <span class="no">01</span>
+          <h3>Free Life 拖挂式可伸展房车</h3>
+          <span class="en">Expandable Trailer</span>
+          <p>收纳 3,800mm，展开 5,100mm。纵向拉伸扩展、顶部升降、驻车支撑——把居住与行驶两种状态叠进一个体积里。</p>
+        </div>
+      </article>
+
+      <article class="work reveal">
+        <div class="work-media"><img src="assets/01-baroll.jpg" alt="Baroll 便携滚珠洗衣机" loading="lazy"></div>
+        <div class="work-meta">
+          <span class="no">02</span>
+          <h3>Baroll 便携滚珠洗衣机</h3>
+          <span class="en">Portable Roller Washer</span>
+          <p>宿舍、租房、差旅里洗小件。体积拆成两层，洗涤球可拆；滚珠代替搅拌，交互移出机身。</p>
+        </div>
+      </article>
+
+      <article class="work reveal">
+        <div class="work-media"><img src="assets/02-toaster.jpg" alt="早安 · 吐司机" loading="lazy"></div>
+        <div class="work-meta">
+          <span class="no">03</span>
+          <h3>早安 · 吐司机</h3>
+          <span class="en">Perfect Breakfast Time</span>
+          <p>上班上学前的八分钟。上下分体、按压出仓、抽屉式接屑盘，把操作压到三步，把安全做进造型。</p>
+        </div>
+      </article>
+    </div>
+  </section>
+
+  <!-- ============ 能力 ============ -->
+  <section class="section" id="capabilities">
+    <div class="sec-head reveal">
+      <h2>我能做什么</h2>
+      <span class="en">Capabilities</span>
+    </div>
+    <div class="cap-grid">
+      <article class="cap reveal">
+        <svg viewBox="0 0 24 24"><path d="M3 6h18M3 12h18M3 18h18M8 3v18M16 3v18"/></svg>
+        <h3>结构推演</h3>
+        <span class="en">Structure</span>
+        <p>先拆体积，再谈造型。可拆洗涤球、可拉伸厢体、按压出仓，都是结构先行，外观跟着结构长出来。</p>
+      </article>
+      <article class="cap reveal">
+        <svg viewBox="0 0 24 24"><path d="M12 3l9 6-9 6-9-6 9-6z"/><path d="M3 15l9 6 9-6"/></svg>
+        <h3>形态与 CMF</h3>
+        <span class="en">Form · Colour · Finish</span>
+        <p>ABS、TPU、透明 PVC、长虹玻璃、拉丝金属。造型跟着工艺与成本走，不做只在渲染图里成立的设计。</p>
+      </article>
+      <article class="cap reveal">
+        <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M12 3v18M3 12h18"/></svg>
+        <h3>场景定义</h3>
+        <span class="en">Scenario</span>
+        <p>宿舍的角落、早餐前的八分钟、一个停车位。约束先于方案，判断先于形态。</p>
+      </article>
+    </div>
+  </section>
+
+  <!-- ============ 联系 ============ -->
+  <section class="contact" id="contact">
+    <div class="reveal">
+      <h2>聊聊<em>Contact</em></h2>
+      <div class="contact-lines">
+        <div>
+          <dt>邮箱</dt>
+          <dd><a href="mailto:1695766805@qq.com">1695766805@qq.com</a></dd>
+        </div>
+        <div>
+          <dt>微信</dt>
+          <dd>waw1233215679</dd>
+        </div>
+      </div>
+    </div>
+    <footer>
+      <span>董槟源 · 2026 · 产品设计</span>
+      <span>Portfolio / Web Edition</span>
+    </footer>
+  </section>
 </main>
 
-<!-- ================= 放大查看 ================= -->
-<div class="lightbox" id="lightbox" aria-hidden="true">
-  <div class="lb-bar">
-    <span>点击空白处关闭 · 滚轮缩放 · 拖动平移</span>
-    <button id="lbClose">关闭</button>
-  </div>
-  <div class="lb-stage" id="lbStage"><img id="lbImg" alt="作品放大预览"></div>
-</div>
-
 <script>
-(function(){
-  const reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-
-  /* 滚动进度 */
-  const bar = document.getElementById('progress');
-  const onScroll = () => {
-    const h = document.documentElement.scrollHeight - window.innerHeight;
-    bar.style.width = (h > 0 ? (window.scrollY / h) * 100 : 0) + '%';
-  };
+  // 顶部背景在滚动后出现
+  var head = document.getElementById('siteHead');
+  function onScroll(){
+    if (window.scrollY > 40) head.classList.add('solid');
+    else head.classList.remove('solid');
+  }
   window.addEventListener('scroll', onScroll, {passive:true});
   onScroll();
 
-  /* 淡入 */
-  const items = document.querySelectorAll('.reveal');
-  if (!reduce && 'IntersectionObserver' in window) {
-    const io = new IntersectionObserver((entries) => {
-      entries.forEach(e => {
-        if (e.isIntersecting) { e.target.classList.add('in'); io.unobserve(e.target); }
-      });
-    }, {rootMargin:'0px 0px -12% 0px', threshold:.08});
-    items.forEach(el => io.observe(el));
-  } else {
-    items.forEach(el => el.classList.add('in'));
+  // 入场
+  var io = new IntersectionObserver(function(entries){
+    entries.forEach(function(e){
+      if (e.isIntersecting){ e.target.classList.add('in'); io.unobserve(e.target); }
+    });
+  }, {threshold:.12});
+  document.querySelectorAll('.reveal').forEach(function(el){ io.observe(el); });
+
+  // 自转卡：每转满一圈换一个作品
+  var works = [
+    {img:'assets/03-rv.jpg', no:'01', cn:'Free Life 拖挂式可伸展房车', en:'Expandable Trailer', dim:'3,800 → 5,100 mm'},
+    {img:'assets/01-baroll.jpg', no:'02', cn:'Baroll 便携滚珠洗衣机', en:'Portable Roller Washer', dim:'φ 96 × 210 mm'},
+    {img:'assets/02-toaster.jpg', no:'03', cn:'早安 · 吐司机', en:'Perfect Breakfast Time', dim:'双槽 · 上下分体'}
+  ];
+  var idx = 0, card = document.getElementById('card');
+  var els = {
+    img: document.getElementById('cardImg'),
+    no: document.getElementById('cardNum'),
+    cn: document.getElementById('cardCn'),
+    en: document.getElementById('cardEn'),
+    dim: document.getElementById('dimText'),
+    labelNo: document.getElementById('labelNo'),
+    labelName: document.getElementById('labelName')
+  };
+  function paint(i){
+    var w = works[i];
+    els.img.src = w.img;
+    els.img.alt = w.cn;
+    els.no.textContent = w.no;
+    els.cn.textContent = w.cn;
+    els.en.textContent = w.en;
+    els.dim.textContent = w.dim;
+    els.labelNo.textContent = w.no;
+    els.labelName.textContent = w.cn;
   }
-
-  /* 放大查看 */
-  const lb = document.getElementById('lightbox');
-  const stage = document.getElementById('lbStage');
-  const img = document.getElementById('lbImg');
-  let scale = 1, tx = 0, ty = 0, dragging = false, sx = 0, sy = 0;
-
-  const apply = () => {
-    img.style.transform = `translate(${tx}px, ${ty}px) scale(${scale})`;
-  };
-  const reset = () => {
-    scale = 1; tx = 0; ty = 0;
-    const vh = window.innerHeight - 60;
-    img.style.maxHeight = vh + 'px';
-    img.style.maxWidth = (window.innerWidth - 40) + 'px';
-    apply();
-  };
-  const open = (src) => {
-    img.src = src;
-    reset();
-    lb.classList.add('open');
-    lb.setAttribute('aria-hidden','false');
-    document.body.style.overflow = 'hidden';
-  };
-  const close = () => {
-    lb.classList.remove('open');
-    lb.setAttribute('aria-hidden','true');
-    document.body.style.overflow = '';
-    img.removeAttribute('src');
-  };
-
-  document.querySelectorAll('.frame[data-full]').forEach(f => {
-    f.addEventListener('click', () => open(f.dataset.full));
+  paint(0);
+  card.addEventListener('animationiteration', function(){
+    idx = (idx + 1) % works.length;
+    paint(idx);
   });
-  document.getElementById('lbClose').addEventListener('click', close);
-  lb.addEventListener('click', (e) => { if (e.target === lb) close(); });
-  document.addEventListener('keydown', (e) => { if (e.key === 'Escape') close(); });
-
-  stage.addEventListener('wheel', (e) => {
-    e.preventDefault();
-    const next = Math.min(6, Math.max(1, scale * (e.deltaY < 0 ? 1.12 : 0.89)));
-    scale = next; apply();
-  }, {passive:false});
-
-  stage.addEventListener('pointerdown', (e) => {
-    dragging = true; sx = e.clientX - tx; sy = e.clientY - ty;
-    stage.classList.add('dragging'); stage.setPointerCapture(e.pointerId);
-  });
-  stage.addEventListener('pointermove', (e) => {
-    if (!dragging) return;
-    tx = e.clientX - sx; ty = e.clientY - sy; apply();
-  });
-  stage.addEventListener('pointerup', (e) => {
-    dragging = false; stage.classList.remove('dragging');
-    try { stage.releasePointerCapture(e.pointerId); } catch(_) {}
-  });
-  window.addEventListener('resize', () => { if (lb.classList.contains('open')) reset(); });
-
-  /* 打印 */
-  document.getElementById('printBtn').addEventListener('click', () => window.print());
-})();
 </script>
 </body>
 </html>
