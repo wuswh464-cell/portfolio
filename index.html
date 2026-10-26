@@ -212,7 +212,7 @@
     background:var(--surface);transition:transform .45s,border-color .45s;
   }
   .work:hover{transform:translateY(-6px);border-color:rgba(255,255,255,.22)}
-  .work-media{position:relative;aspect-ratio:1600 / 2084;overflow:hidden;background:#0E0E0F}
+  .work-media{position:relative;aspect-ratio:16 / 10;overflow:hidden;background:#0B0B0C}
   .work-media::after{
     content:"查看项目 →";
     position:absolute;left:14px;bottom:14px;
@@ -223,7 +223,7 @@
     opacity:0;transform:translateY(8px);transition:opacity .35s,transform .35s;
   }
   .work:hover .work-media::after{opacity:1;transform:none}
-  .work-media img{width:100%;height:100%;object-fit:cover;transition:transform .6s}
+  .work-media img{display:block;width:100%;height:100%;object-fit:contain;transition:transform .6s}
   .work:hover .work-media img{transform:scale(1.04)}
   .work-meta{padding:18px 18px 22px;border-top:1px solid var(--line)}
   .work-meta .no{font-size:10px;letter-spacing:.2em;color:var(--accent)}
@@ -364,7 +364,7 @@
     </div>
     <div class="works-grid">
       <a class="work reveal" href="work.html?p=rv">
-        <div class="work-media"><img src="assets/03-rv.jpg" alt="Free Life 拖挂式可伸展房车" loading="lazy"></div>
+        <div class="work-media"><img src="assets/03-rv-slide.jpg" alt="Free Life 拖挂式可伸展房车" loading="lazy"></div>
         <div class="work-meta">
           <span class="no">01</span>
           <h3>Free Life 拖挂式可伸展房车</h3>
@@ -374,7 +374,7 @@
       </a>
 
       <a class="work reveal" href="work.html?p=baroll">
-        <div class="work-media"><img src="assets/01-baroll.jpg" alt="Baroll 便携滚珠洗衣机" loading="lazy"></div>
+        <div class="work-media"><img src="assets/01-baroll-slide.jpg" alt="Baroll 便携滚珠洗衣机" loading="lazy"></div>
         <div class="work-meta">
           <span class="no">02</span>
           <h3>Baroll 便携滚珠洗衣机</h3>
@@ -384,7 +384,7 @@
       </a>
 
       <a class="work reveal" href="work.html?p=toaster">
-        <div class="work-media"><img src="assets/02-toaster.jpg" alt="早安 · 吐司机" loading="lazy"></div>
+        <div class="work-media"><img src="assets/02-toaster-slide.jpg" alt="早安 · 吐司机" loading="lazy"></div>
         <div class="work-meta">
           <span class="no">03</span>
           <h3>早安 · 吐司机</h3>
