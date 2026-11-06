@@ -55,6 +55,7 @@
   .case-hero h1{
     margin:clamp(22px,3.4vh,34px) 0 0;
     font-size:clamp(34px,5.6vw,70px);font-weight:400;line-height:1.14;letter-spacing:.01em;
+    text-wrap:balance;
   }
   .case-hero .en{
     margin-top:14px;font-size:10px;letter-spacing:.3em;color:var(--muted);
@@ -126,6 +127,8 @@
     margin-top:16px;font-size:11px;line-height:1.7;color:var(--muted);
   }
   .board figcaption em{font-style:normal;color:#6F6F6F}
+  .plates{display:grid;gap:clamp(34px,5.5vh,62px)}
+  .plate-note{margin:0 0 clamp(22px,3vh,32px);max-width:62ch;font-size:13px;line-height:1.85;color:#9C9C9C}
 
   /* ---------- 下一篇 ---------- */
   .next{
@@ -201,7 +204,7 @@
 
 <header class="bar">
   <a class="bar-brand" href="index.html">董槟源<em>SU SHUI XING</em></a>
-  <div class="bar-count" id="barCount">CASE 01 / 03</div>
+  <div class="bar-count" id="barCount">CASE 01 / 04</div>
   <nav class="bar-nav">
     <a href="index.html#works">全部作品</a>
     <a href="mailto:1695766805@qq.com">联系</a>
@@ -242,11 +245,9 @@
   <section class="s">
     <div class="s-side"><b>03</b><span>图版 / PLATES</span></div>
     <div class="s-body">
-      <h2>完整图版</h2>
-      <figure class="board">
-        <img id="boardImg" src="" alt="" loading="lazy">
-        <figcaption><span id="figcap"></span><em>点击图版放大 / ESC 关闭</em></figcaption>
-      </figure>
+      <h2 id="plateTitle">完整图版</h2>
+      <p class="plate-note" id="plateNote" hidden></p>
+      <div class="plates" id="plates"></div>
     </div>
   </section>
 
@@ -337,9 +338,38 @@
         {h:'清洁变成 5 秒动作',p:'接屑盘做成抽拉抽屉。这类「每天都会脏一点」的机器，维护成本才是长期体验的分水岭。'}
       ],
       fig:'图版含：产品渲染 · 细节特写 · 防烫结构 · 三视图与尺寸标注'
+    },
+    toco:{
+      no:'04',
+      cat:'园艺 / 户外清洗工具',
+      title:'TOCO 啄木鸟仿生可调角水枪',
+      en:'BIONIC WOODPECKER NOZZLE',
+      lede:'仿生最容易停在「像」，难的是把鸟的关节变成能用的结构。这个项目从啄木鸟的喙、颈、爪、尾出发，落成喷嘴、转轴、握把与快接接口四个结构。',
+      img:'assets/toco-01.jpg',
+      facts:[
+        ['品类','园艺与户外清洗水枪 · 4 张 A3 展板'],
+        ['场景','庭院浇灌 · 洗车 · 户外清洁'],
+        ['结构','喷射调节 · 角度转轴 · 防滑握把 · 快接接口'],
+        ['CMF','黄色 ABS · 黑色 TPE · 铝合金 · 工业尼龙']
+      ],
+      note:'四张展板按顺序读：形态与主视觉 → 结构与材料 → 仿生推演与色彩策略 → 使用场景与细节。点击任意一张可放大。',
+      quote:'仿生不是把鸟画得像，而是把鸟的动作变成结构。',
+      points:[
+        {h:'先提取关节，再提取轮廓',p:'啄木鸟的喙负责指向、颈负责转向、爪与尾负责稳定。把这三件事拆开，形态才有落点，而不是一张鸟的剪影。'},
+        {h:'四个结构，四个动作',p:'喷射／喷雾调节关节对应喙的取食动作，角度转轴对应颈的转动，磨砂握把对应爪的抓握，底部快接接口对应尾的支撑与固定。'},
+        {h:'CMF 同时承担识别与耐用',p:'黄色 ABS 亮面做识别主体，黑色 TPE 磨砂包裹解决手湿打滑，银色铝合金转轴承担角度调节的受力，灰色工业尼龙接口保证反复插拔的耐久。'},
+        {h:'角度由场景决定',p:'浇花要扇形、洗车要直射、冲洗角落要低头。可调角不是为了多一个卖点，而是让同一把枪在三种高度与距离下都不用换姿势。'}
+      ],
+      fig:'四张展板：形态与主视觉 · 结构与材料 · 仿生推演与色彩策略 · 使用场景与细节',
+      boards:[
+        {src:'assets/toco-01.jpg', cap:'形态与主视觉　产品渲染 · 两版草图推演 · 喷嘴与转轴细节'},
+        {src:'assets/toco-02.jpg', cap:'结构与材料　四处结构标注 · CMF 分解 · 使用场景说明'},
+        {src:'assets/toco-03.jpg', cap:'仿生推演　鸟形态提取 → 轮廓语言转译 → 结构方案收敛 · 爆炸图与色彩比例'},
+        {src:'assets/toco-04.jpg', cap:'使用场景与细节　出水效果 · 结构解析 · 庭院与洗车 · 三处细节特写'}
+      ]
     }
   };
-  var order = ['rv','baroll','toaster'];
+  var order = ['rv','baroll','toaster','toco'];
   var key = (new URLSearchParams(location.search).get('p') || 'rv').toLowerCase();
   if (!projects[key]) key = 'rv';
   var p = projects[key];
@@ -353,16 +383,28 @@
   set('lede', p.lede);
   set('caseNo', p.no);
   set('quote', p.quote);
-  set('figcap', p.fig);
-  set('barCount', 'CASE ' + p.no + ' / 03');
+  set('barCount', 'CASE ' + p.no + ' / ' + ('0' + order.length).slice(-2));
   document.title = p.title + '｜董槟源';
 
   var hero = document.getElementById('heroImg');
   hero.src = p.img;
   hero.alt = p.title + ' 设计图版';
-  var board = document.getElementById('boardImg');
-  board.src = p.poster;
-  board.alt = p.title + ' 完整设计图版';
+
+  if (p.boards){
+    set('plateTitle', '系列图版');
+    var noteEl = document.getElementById('plateNote');
+    noteEl.textContent = p.note || '';
+    noteEl.hidden = false;
+  }
+  var plateList = p.boards || [{src:p.poster, cap:p.fig}];
+  document.getElementById('plates').innerHTML = plateList.map(function(b,i){
+    var n = ('0' + (i+1)).slice(-2);
+    var em = p.boards
+      ? n + ' / ' + ('0' + plateList.length).slice(-2) + '　点击放大'
+      : '点击图版放大 / ESC 关闭';
+    return '<figure class="board"><img src="' + b.src + '" alt="' + p.title + ' 图版 ' + n + '" loading="lazy">' +
+      '<figcaption><span>' + b.cap + '</span><em>' + em + '</em></figcaption></figure>';
+  }).join('');
 
   document.getElementById('facts').innerHTML = p.facts.map(function(f){
     return '<div><dt>' + f[0] + '</dt><dd>' + f[1] + '</dd></div>';
@@ -405,11 +447,13 @@
   // 图版放大
   var lb = document.getElementById('lb');
   var lbImg = document.getElementById('lbImg');
-  board.addEventListener('click', function(){
-    lbImg.src = board.src;
-    lbImg.alt = board.alt;
-    lb.classList.add('on');
-    document.body.style.overflow = 'hidden';
+  document.querySelectorAll('#plates img').forEach(function(img){
+    img.addEventListener('click', function(){
+      lbImg.src = img.src;
+      lbImg.alt = img.alt;
+      lb.classList.add('on');
+      document.body.style.overflow = 'hidden';
+    });
   });
   function closeLb(){
     lb.classList.remove('on');

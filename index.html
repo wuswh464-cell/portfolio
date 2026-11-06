@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>董槟源｜产品设计 · 个人网站</title>
-<meta name="description" content="董槟源（溯水行），产品设计。三个项目，三种约束；结构、形态与场景，是我读产品的三条线索。">
+<meta name="description" content="董槟源（溯水行），产品设计。三个项目与一组展板；结构、形态与场景，是我读产品的三条线索。">
 <style>
   :root{
     --bg:#0A0A0B;
@@ -232,6 +232,36 @@
   .work-meta .en{font-size:9px;letter-spacing:.18em;color:var(--muted);text-transform:uppercase}
   .work-meta p{margin:12px 0 0;font-size:12.5px;color:#9C9C9C;line-height:1.7}
 
+  /* ---------- 系列 ---------- */
+  .series{display:block;color:inherit;margin-top:clamp(40px,6vh,76px)}
+  .series-top{
+    display:flex;flex-wrap:wrap;align-items:flex-end;justify-content:space-between;
+    gap:18px 40px;padding:24px 0 22px;border-top:1px solid var(--line);
+  }
+  .series-top .main{max-width:660px}
+  .series-top .no{display:inline-block;font-size:10px;letter-spacing:.22em;color:var(--accent);margin-bottom:12px}
+  .series-top h3{margin:0;font-size:clamp(22px,3vw,34px);font-weight:500;line-height:1.25}
+  .series-top .en{display:block;margin-top:9px;font-size:9px;letter-spacing:.22em;color:var(--muted);text-transform:uppercase}
+  .series-top p{margin:15px 0 0;max-width:52ch;font-size:13px;line-height:1.8;color:#9C9C9C}
+  .series-top .cue{
+    flex:0 0 auto;display:inline-flex;align-items:center;gap:10px;
+    padding:10px 0;font-size:11px;letter-spacing:.14em;color:#D2D2D2;
+    border-bottom:1px solid rgba(255,255,255,.22);transition:color .3s,border-color .3s;
+  }
+  .series-top .cue i{font-style:normal;transition:transform .3s}
+  .series:hover .cue{color:#fff;border-bottom-color:var(--accent)}
+  .series:hover .cue i{transform:translateX(5px)}
+  .series-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:clamp(8px,1vw,14px)}
+  .series-grid figure{position:relative;margin:0;overflow:hidden;border:1px solid var(--line);background:#0E0E0F}
+  .series-grid img{display:block;width:100%;height:auto;transition:transform .7s ease,filter .7s ease}
+  .series-grid figure:hover img{transform:scale(1.02);filter:brightness(1.04)}
+  .series-grid figcaption{
+    display:flex;align-items:baseline;gap:11px;
+    padding:11px 13px 12px;border-top:1px solid var(--line);
+    font-size:11px;letter-spacing:.04em;color:#A9A9A9;
+  }
+  .series-grid figcaption span{font-size:9px;letter-spacing:.18em;color:var(--accent);flex:0 0 auto}
+
   /* ---------- 能力 ---------- */
   .cap-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:clamp(14px,1.6vw,24px)}
   .cap{
@@ -281,6 +311,8 @@
     .hero-stage{min-height:74vh}
     .card{width:min(66vw,360px)}
     .works-grid,.cap-grid{grid-template-columns:1fr}
+    .series-grid{grid-template-columns:1fr}
+    .series-top .cue{padding-top:0}
   }
   @media (max-width:640px){
     .head-nav a:not(.pill){display:none}
@@ -318,7 +350,7 @@
       <div class="kicker">PORTFOLIO / 2026 <em>·</em> 产品设计</div>
       <h1>把约束<br>翻译成<br>产品</h1>
       <p class="en-line">Constraint → Form · Structure · Interaction</p>
-      <p class="hero-sub">董槟源 · 产品设计。三个项目，三种约束；结构、形态与场景，是我读产品的三条线索。</p>
+      <p class="hero-sub">董槟源 · 产品设计。三个项目，一组展板；结构、形态与场景，是我读产品的三条线索。</p>
       <div class="hero-actions">
         <a class="btn solid" href="#works">查看作品</a>
         <a class="btn ghost" href="mailto:1695766805@qq.com">发邮件</a>
@@ -365,8 +397,8 @@
   <!-- ============ 作品 ============ -->
   <section class="section" id="works">
     <div class="sec-head reveal">
-      <h2>三个项目</h2>
-      <span class="en">Selected Projects 01–03</span>
+      <h2>三个项目 · 一组展板</h2>
+      <span class="en">Projects 01–03 · Plate Series 04</span>
     </div>
     <div class="works-grid">
       <a class="work reveal" href="work.html?p=rv">
@@ -399,6 +431,36 @@
         </div>
       </a>
     </div>
+
+    <a class="series reveal" href="work.html?p=toco">
+      <div class="series-top">
+        <div class="main">
+          <span class="no">SERIES 04 / 2026</span>
+          <h3>TOCO 啄木鸟仿生可调角水枪</h3>
+          <span class="en">Bionic Woodpecker Nozzle · 4 Plates</span>
+          <p>四张 A3 展板，从一次仿生开始：先提取啄木鸟的喙、颈、爪、尾，再翻译成喷嘴、转轴、握把与快接接口四个结构。按 01—04 读，是形态、结构、推演与场景四个层面。</p>
+        </div>
+        <span class="cue">查看系列 <i>→</i></span>
+      </div>
+      <div class="series-grid">
+        <figure>
+          <img src="assets/toco-01-thumb.jpg" srcset="assets/toco-01-thumb.jpg 1100w, assets/toco-01.jpg 2200w" sizes="(max-width:900px) 100vw, 50vw" alt="TOCO 展板 01：形态与主视觉" loading="lazy" decoding="async">
+          <figcaption><span>01</span>形态与主视觉</figcaption>
+        </figure>
+        <figure>
+          <img src="assets/toco-02-thumb.jpg" srcset="assets/toco-02-thumb.jpg 1100w, assets/toco-02.jpg 2200w" sizes="(max-width:900px) 100vw, 50vw" alt="TOCO 展板 02：结构与材料" loading="lazy" decoding="async">
+          <figcaption><span>02</span>结构与材料</figcaption>
+        </figure>
+        <figure>
+          <img src="assets/toco-03-thumb.jpg" srcset="assets/toco-03-thumb.jpg 1100w, assets/toco-03.jpg 2200w" sizes="(max-width:900px) 100vw, 50vw" alt="TOCO 展板 03：仿生推演与色彩策略" loading="lazy" decoding="async">
+          <figcaption><span>03</span>仿生推演 · 色彩策略</figcaption>
+        </figure>
+        <figure>
+          <img src="assets/toco-04-thumb.jpg" srcset="assets/toco-04-thumb.jpg 1100w, assets/toco-04.jpg 2200w" sizes="(max-width:900px) 100vw, 50vw" alt="TOCO 展板 04：使用场景与细节" loading="lazy" decoding="async">
+          <figcaption><span>04</span>使用场景 · 细节</figcaption>
+        </figure>
+      </div>
+    </a>
   </section>
 
   <!-- ============ 能力 ============ -->
