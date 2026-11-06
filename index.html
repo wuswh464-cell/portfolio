@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>董槟源｜产品设计 · 个人网站</title>
-<meta name="description" content="董槟源（溯水行），产品设计。三个项目与一组展板；结构、形态与场景，是我读产品的三条线索。">
+<meta name="description" content="董槟源（溯水行），产品设计。三个项目、一组展板与一项外观设计专利；结构、形态与场景，是我读产品的三条线索。">
 <style>
   :root{
     --bg:#0A0A0B;
@@ -282,6 +282,88 @@
   .cap .tools b{font-size:11px;font-weight:500;letter-spacing:.16em;color:#DCDCDC;white-space:nowrap}
   .cap .tools span{font-size:11.5px;color:#9C9C9C;text-align:right}
 
+  /* ---------- 专利 ---------- */
+  #patent .sec-head{margin-bottom:clamp(18px,2.5vh,28px)}
+  .patent-lede{
+    margin:0 0 clamp(32px,5vh,56px);max-width:64ch;
+    font-size:13.5px;line-height:1.9;color:#A6A6A6;
+  }
+  .patent-lede b{font-weight:500;color:#E8E8E8}
+  .patent-lede .blue{color:#6A9BCC}
+  .patent-grid{
+    display:grid;grid-template-columns:1.14fr .86fr;
+    gap:clamp(14px,1.6vw,24px);align-items:start;
+  }
+  .patent-plate{
+    position:relative;isolation:isolate;margin:0;
+    display:flex;flex-direction:column;
+    padding:clamp(18px,2vw,30px);
+    background:#FAF9F5;color:#141413;
+    border:1px solid rgba(20,20,19,.16);
+    box-shadow:0 36px 90px rgba(0,0,0,.5);
+  }
+  .patent-plate::before{
+    content:"";position:absolute;inset:9px;z-index:2;pointer-events:none;
+    border:1px solid rgba(20,20,19,.08);
+  }
+  .plate-frame{flex:1;min-height:0;display:flex;align-items:center;justify-content:center}
+  .patent-plate.product img{
+    width:100%;height:auto;mix-blend-mode:multiply;
+  }
+  .plate-cap{
+    display:flex;align-items:flex-end;justify-content:space-between;flex-wrap:wrap;gap:10px 26px;
+    margin-top:clamp(16px,1.8vw,24px);padding-top:13px;
+    border-top:1px solid rgba(20,20,19,.16);
+  }
+  .cap-main{display:flex;align-items:baseline;gap:16px}
+  .plate-cap .no{flex:0 0 auto;font-size:9px;letter-spacing:.2em;color:#3C658A}
+  .plate-cap b{display:block;font-size:12.5px;font-weight:500;line-height:1.5;color:#141413}
+  .plate-cap em{
+    font-style:normal;font-size:9px;letter-spacing:.16em;
+    color:#7B7A73;text-transform:uppercase;text-align:right;
+  }
+
+  .patent-plate.record{padding:clamp(18px,2vw,30px)}
+  .record-head{
+    display:flex;justify-content:space-between;align-items:baseline;gap:14px;
+    padding-bottom:11px;border-bottom:1px solid rgba(20,20,19,.16);
+    font-size:8.5px;letter-spacing:.18em;color:#3C658A;
+  }
+  .record-head em{font-style:normal;color:#8B8A82;letter-spacing:.12em}
+  .record-frame{display:block;margin-top:clamp(14px,1.6vw,22px)}
+  .record-frame img{
+    display:block;width:100%;height:auto;mix-blend-mode:multiply;
+  }
+  .record-facts{
+    display:grid;grid-template-columns:1fr 1fr;
+    margin:clamp(16px,1.8vw,24px) 0 0;border-top:1px solid rgba(20,20,19,.14);
+  }
+  .record-facts div{padding:10px 0 11px;border-bottom:1px solid rgba(20,20,19,.1)}
+  .record-facts div:nth-child(odd){padding-right:12px}
+  .record-facts dt{font-size:8px;letter-spacing:.18em;color:#8B8A82}
+  .record-facts dd{
+    margin:6px 0 0;font-family:Georgia,"Songti SC","SimSun",serif;
+    font-size:12px;line-height:1.4;letter-spacing:.01em;color:#141413;
+  }
+  .record-link{
+    display:flex;align-items:center;justify-content:space-between;gap:14px;
+    margin-top:auto;padding-top:13px;font-size:10px;letter-spacing:.14em;color:#3C658A;
+    transition:color .25s;
+  }
+  .record-link em{font-style:normal;font-size:11px;transition:transform .25s}
+  .record-link:hover{color:#141413}
+  .record-link:hover em{transform:translate(2px,-2px)}
+
+  .patent-foot{
+    display:flex;justify-content:space-between;align-items:baseline;gap:18px 40px;flex-wrap:wrap;
+    margin-top:clamp(26px,4vh,44px);padding-top:20px;border-top:1px solid var(--line);
+    font-size:12px;line-height:1.8;color:#A6A6A6;
+  }
+  .patent-foot p{margin:0}
+  .patent-foot span{display:inline-block;margin-right:14px;font-size:9px;letter-spacing:.2em;color:#6A9BCC}
+  .patent-foot b{font-weight:500;color:#EDEDED}
+  .patent-foot .note{font-size:10.5px;color:#767676;letter-spacing:.02em}
+
   /* ---------- 联系 ---------- */
   .contact{border-top:1px solid var(--line);padding:clamp(72px,12vh,140px) clamp(24px,5.5vw,88px) 48px;scroll-margin-top:76px}
   .contact h2{margin:0 0 28px;font-size:clamp(30px,4.4vw,56px);font-weight:500;line-height:1.1;letter-spacing:.01em}
@@ -313,10 +395,14 @@
     .works-grid,.cap-grid{grid-template-columns:1fr}
     .series-grid{grid-template-columns:1fr}
     .series-top .cue{padding-top:0}
+    .patent-grid{grid-template-columns:1fr}
+    .patent-plate{box-shadow:0 24px 56px rgba(0,0,0,.45)}
+    .patent-foot{flex-direction:column;gap:8px}
   }
   @media (max-width:640px){
     .head-nav a:not(.pill){display:none}
     .stage-label{font-size:9px}
+    .plate-cap em{text-align:left}
   }
 
   /* ---------- 打印 ---------- */
@@ -338,6 +424,7 @@
   <nav class="head-nav">
     <a href="#works">作品</a>
     <a href="#capabilities">能力</a>
+    <a href="#patent">专利</a>
     <a href="#contact">联系</a>
     <a class="pill" href="mailto:1695766805@qq.com">发邮件</a>
   </nav>
@@ -495,6 +582,56 @@
           <li><b>Blender</b><span>基础三维与动画</span></li>
         </ul>
       </article>
+    </div>
+  </section>
+
+  <!-- ============ 专利 ============ -->
+  <section class="section" id="patent">
+    <div class="sec-head reveal">
+      <h2>外观设计专利</h2>
+      <span class="en">Appearance Design Patent · 2026</span>
+    </div>
+    <p class="patent-lede reveal">
+      <b>卡通动物玩偶（IP）</b>——圆头、面罩式表情、织物坐垫与木质底圈。2026 年 6 月获国家知识产权局外观设计专利授权，由 7 位设计人共同申请。
+    </p>
+
+    <div class="patent-grid">
+      <figure class="patent-plate product reveal">
+        <div class="plate-frame">
+          <img src="assets/patent-toy.jpg" alt="卡通动物玩偶（IP）外观设计立体图" loading="lazy">
+        </div>
+        <figcaption class="plate-cap">
+          <div class="cap-main">
+            <span class="no">FIG. 01</span>
+            <b>外观设计立体图</b>
+          </div>
+          <em>Perspective · Cartoon Animal Doll</em>
+        </figcaption>
+      </figure>
+
+      <figure class="patent-plate record reveal">
+        <div class="record-head">
+          <span>CERT. NO. 10047596</span>
+          <em>国家知识产权局</em>
+        </div>
+        <a class="record-frame" href="assets/patent-certificate.pdf" target="_blank" rel="noopener" aria-label="查看外观设计专利证书原件（PDF）">
+          <img src="assets/patent-certificate.jpg" alt="外观设计专利证书，证书号 10047596，卡通动物玩偶（IP）" loading="lazy">
+        </a>
+        <dl class="record-facts">
+          <div><dt>专利号</dt><dd>ZL 2025 3 0666579.4</dd></div>
+          <div><dt>授权公告号</dt><dd>CN 310029963 S</dd></div>
+          <div><dt>申请日</dt><dd>2025.11.12</dd></div>
+          <div><dt>授权公告日</dt><dd>2026.06.12</dd></div>
+        </dl>
+        <a class="record-link" href="assets/patent-certificate.pdf" target="_blank" rel="noopener">
+          <span>查看证书原件</span><em>PDF ↗</em>
+        </a>
+      </figure>
+    </div>
+
+    <div class="patent-foot reveal">
+      <p><span>设计人 / 专利权人</span>吴智宏 · 盘秋莉 · <b>董槟源</b> · 何璐敏 · 陈雨轩 · 黄丽雯 · 韦晨</p>
+      <p class="note">共同申请 7 人　·　专利公告信息以国家知识产权局登记为准</p>
     </div>
   </section>
 
