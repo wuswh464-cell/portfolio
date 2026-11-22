@@ -149,10 +149,10 @@
       linear-gradient(118deg,#d2d2d2 0%,#8b8b8b 16%,#f1f1f1 33%,#6e6e6e 50%,#c6c6c6 66%,#7d7d7d 82%,#eaeaea 100%);
   }
   .front-top{
-    position:relative;z-index:2;display:flex;justify-content:space-between;
+    position:relative;z-index:2;display:flex;align-items:center;justify-content:space-between;
     font-size:9px;letter-spacing:.22em;color:rgba(0,0,0,.62);
   }
-  .front-name{position:relative;z-index:2}
+  .front-name{position:relative;z-index:2;padding-bottom:56px}
   .front-name .cn{
     font-size:clamp(40px,4.4vw,58px);font-weight:500;line-height:1.08;
     letter-spacing:.06em;color:#05060A;
@@ -171,6 +171,22 @@
   .front::before{
     content:"";position:absolute;inset:0;z-index:1;
     background:linear-gradient(to top,rgba(255,255,255,.16),transparent 42%);
+  }
+
+  .card-frame{
+    position:absolute;inset:10px;z-index:2;pointer-events:none;
+    border:1px solid rgba(0,0,0,.16);border-radius:8px;
+  }
+  .back .card-frame{border-color:rgba(255,255,255,.08)}
+  .seal{
+    flex:none;width:23px;height:23px;border-radius:2px;
+    display:grid;place-items:center;
+    background:var(--accent);color:#fff;
+    font-size:11px;line-height:1;letter-spacing:0;
+  }
+  .front-foot{
+    position:absolute;left:26px;bottom:28px;z-index:2;
+    font-size:8.5px;letter-spacing:.24em;color:rgba(0,0,0,.55);
   }
 
   .back{
@@ -436,7 +452,7 @@
   <!-- ============ Hero ============ -->
   <section class="hero" id="top">
     <div class="hero-copy">
-      <div class="kicker">PORTFOLIO / 2026 <em>·</em> 产品设计</div>
+      <div class="kicker">PORTFOLIO <em>·</em> 产品设计</div>
       <h1>把约束<br>翻译成<br>产品</h1>
       <p class="en-line">Constraint → Form · Structure · Interaction</p>
       <p class="hero-sub">让复杂的事情，用起来简单一点。</p>
@@ -457,28 +473,31 @@
         <div class="tilt">
           <div class="card" id="card">
             <div class="face front">
-              <div class="front-top"><span>PRODUCT DESIGN</span><span>2026</span></div>
+              <div class="card-frame"></div>
+              <div class="front-top"><span>PRODUCT DESIGN</span><span class="seal">溯</span></div>
               <div class="front-name">
                 <div class="cn">董槟源</div>
                 <div class="en">DONG BINYUAN</div>
                 <div class="hair"></div>
               </div>
+              <div class="front-foot">CONSTRAINT → FORM</div>
             </div>
             <div class="face back">
-              <div class="back-top"><span>DESIGN NAME</span><span>设计名</span></div>
+              <div class="card-frame"></div>
+              <div class="back-top"><span>STUDIO</span><span>DONG BINYUAN</span></div>
               <div class="back-name">
                 <div class="cn">溯水行</div>
                 <div class="rule"></div>
                 <div class="en">SU SHUI XING</div>
               </div>
-              <div class="back-foot">产品设计 · 2026</div>
+              <div class="back-foot">PRODUCT DESIGN</div>
             </div>
           </div>
         </div>
       </div>
 
       <div class="stage-label">
-        <b>PORTFOLIO</b><span>2026 · 产品设计</span>
+        <b>PORTFOLIO</b><span>产品设计</span>
       </div>
     </div>
   </section>
@@ -696,7 +715,7 @@
       </div>
     </div>
     <footer>
-      <span>董槟源 · 2026 · 产品设计</span>
+      <span>董槟源 · 产品设计</span>
       <span>Portfolio / Web Edition</span>
     </footer>
   </section>
