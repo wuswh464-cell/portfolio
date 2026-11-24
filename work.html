@@ -5,6 +5,19 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>作品详情 · 董槟源</title>
 <meta name="description" content="董槟源（溯水行）产品设计项目详情：项目背景、设计判断、结构拆解与完整图版。">
+<script>
+/* AVIF 解码失败时（老浏览器）回退到 src 的 WebP */
+document.addEventListener('error', function(e){
+  var i = e.target;
+  if (i && i.tagName === 'IMG' && i.getAttribute('srcset') && !i.getAttribute('data-fb')){
+    var s = i.getAttribute('src');
+    i.setAttribute('data-fb', '1');
+    i.removeAttribute('srcset');
+    i.removeAttribute('src');
+    i.src = s;
+  }
+}, true);
+</script>
 <style>
   :root{
     --bg:#0A0A0B;
@@ -447,15 +460,28 @@
   set('barCount', 'CASE ' + p.no + ' / ' + ('0' + order.length).slice(-2));
   document.title = p.title + '｜董槟源';
 
+  // 原图宽度（用于 srcset 描述符）
+  function fullW(stem){
+    if (stem.indexOf('toco') > -1) return 2200;
+    if (stem.indexOf('rv') > -1 || stem.indexOf('baroll') > -1 || stem.indexOf('toaster') > -1) return 1600;
+    return 1491;
+  }
   function vset(base){
     var stem = base.replace(/\.jpg$/i, '');
-    return { sm: stem + '-1100.webp', lg: stem + '-1440.webp' };
+    var w = fullW(stem);
+    var set = w > 1440
+      ? stem + '-1100.avif 1100w, ' + stem + '-1440.avif 1440w, ' + stem + '.avif ' + w + 'w'
+      : stem + '-1100.avif 1100w, ' + stem + '.avif ' + w + 'w';
+    return {
+      sm: stem + '-1100.webp', lg: stem + '-1440.webp',
+      avSm: stem + '-1100.avif', avFull: stem + '.avif', avSet: set
+    };
   }
 
   var hero = document.getElementById('heroImg');
   var hv = vset(p.img);
   hero.src = hv.sm;
-  hero.srcset = hv.sm + ' 1100w, ' + hv.lg + ' 1440w';
+  hero.srcset = hv.avSet;
   hero.sizes = '(max-width:900px) calc(100vw - 40px), 1160px';
   hero.decoding = 'async';
   hero.alt = p.title + ' 设计图版';
@@ -473,7 +499,7 @@
       ? n + ' / ' + ('0' + plateList.length).slice(-2) + '　点击放大'
       : '点击图版放大 / ESC 关闭';
     var v = vset(b.src);
-    return '<figure class="board"><img src="' + v.sm + '" srcset="' + v.sm + ' 1100w, ' + v.lg + ' 1440w" sizes="(max-width:900px) calc(100vw - 40px), 1160px" data-full="' + v.lg + '" alt="' + p.title + ' 图版 ' + n + '" loading="lazy" decoding="async">' +
+    return '<figure class="board"><img src="' + v.sm + '" srcset="' + v.avSet + '" sizes="(max-width:900px) calc(100vw - 40px), 1160px" data-avif="' + v.avFull + '" data-full="' + v.lg + '" alt="' + p.title + ' 图版 ' + n + '" loading="lazy" decoding="async">' +
       '<figcaption><span>' + b.cap + '</span><em>' + em + '</em></figcaption></figure>';
   }).join('');
 
@@ -520,6 +546,7 @@
   var lbImg = document.getElementById('lbImg');
   document.querySelectorAll('#plates img').forEach(function(img){
     img.addEventListener('click', function(){
+      lbImg.srcset = img.dataset.avif || '';
       lbImg.src = img.dataset.full || img.src;
       lbImg.alt = img.alt;
       lb.classList.add('on');
