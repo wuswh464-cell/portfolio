@@ -42,30 +42,53 @@
     transform:scaleX(var(--sy,0));z-index:200;pointer-events:none;
   }
 
-  /* ---------- 顶部 ---------- */
+  /* ---------- 顶部（悬浮刘海栏） ---------- */
   .site-head{
     position:fixed;top:0;left:0;right:0;z-index:60;
-    display:flex;align-items:center;justify-content:space-between;
-    padding:16px clamp(20px,4vw,56px);
-    border-bottom:1px solid transparent;
-    transition:background .35s,border-color .35s,backdrop-filter .35s;
+    padding:8px clamp(12px,2vw,24px) 0;
+    transition:transform .5s cubic-bezier(.22,.61,.36,1);
+    will-change:transform;
   }
-  .site-head.solid{
-    background:rgba(10,10,11,.72);border-bottom-color:var(--line);
-    backdrop-filter:saturate(160%) blur(14px);
-    -webkit-backdrop-filter:saturate(160%) blur(14px);
+  .site-head.hide{transform:translateY(-115%)}
+  .head-stack{max-width:1440px;margin:0 auto}
+  .head-promo{
+    display:flex;align-items:center;justify-content:center;gap:9px;
+    height:26px;margin-bottom:6px;border-radius:6px;
+    background:#A63A28;color:#FBF1ED;
+    font-size:10px;letter-spacing:.16em;
+    transition:background .25s;
+  }
+  .head-promo:hover{background:#B8442F}
+  .head-promo:focus-visible{outline-color:#FBF1ED}
+  .head-promo .dot{width:4px;height:4px;border-radius:50%;background:#FBF1ED;opacity:.85}
+  .head-promo em{font-style:normal;font-size:11px;opacity:.75;transition:transform .25s}
+  .head-promo:hover em{transform:translateX(3px)}
+  .head-bar{
+    position:relative;display:flex;align-items:center;justify-content:space-between;
+    height:56px;padding:0 clamp(14px,2vw,22px);border-radius:10px;
+    background:linear-gradient(180deg,#E4E4E0 0%,#D2D2CD 55%,#C7C7C2 100%);
+    border:1px solid rgba(0,0,0,.14);
+    box-shadow:0 16px 36px rgba(0,0,0,.42),inset 0 1px 0 rgba(255,255,255,.75);
+    color:#0B0B0C;
+  }
+  .head-notch{
+    position:absolute;left:50%;top:0;transform:translateX(-50%);
+    width:clamp(64px,10vw,112px);height:13px;
+    background:var(--bg);border-radius:0 0 9px 9px;
+    pointer-events:none;
   }
   .brand{display:flex;align-items:baseline;gap:10px;font-size:13px;letter-spacing:.06em}
-  .brand span{font-size:10px;letter-spacing:.2em;color:var(--muted)}
-  .head-nav{display:flex;align-items:center;gap:clamp(14px,2.4vw,30px);font-size:12px;color:var(--muted)}
+  .brand span{font-size:10px;letter-spacing:.2em;color:#5F5F5B}
+  .head-nav{display:flex;align-items:center;gap:clamp(14px,2.4vw,30px);font-size:12px;color:#4A4A46}
   .head-nav a{transition:color .25s}
-  .head-nav a:hover{color:var(--ink)}
+  .head-nav a:hover{color:#0B0B0C}
   .pill{
-    border:1px solid rgba(255,255,255,.18);border-radius:999px;
-    padding:8px 16px;font-size:11px;letter-spacing:.08em;color:var(--ink);
-    transition:background .25s,border-color .25s,color .25s;
+    border:1px solid transparent;border-radius:999px;
+    padding:8px 16px;font-size:11px;letter-spacing:.08em;
+    background:#0A0A0B;color:#F2F2EF;
+    transition:background .25s,color .25s;
   }
-  .pill:hover{background:#EDEDED;border-color:#EDEDED;color:#0A0A0B}
+  .pill:hover{background:#262626;color:#fff}
 
   /* ---------- Hero ---------- */
   .hero{
@@ -242,7 +265,7 @@
   .stage-label span{margin-left:14px;letter-spacing:.06em}
 
   /* ---------- 通用段落 ---------- */
-  .section{position:relative;padding:clamp(72px,12vh,140px) clamp(24px,5.5vw,88px);border-top:1px solid var(--line);scroll-margin-top:76px}
+  .section{position:relative;padding:clamp(72px,12vh,140px) clamp(24px,5.5vw,88px);border-top:1px solid var(--line);scroll-margin-top:108px}
   .section::before{
     content:"";position:absolute;left:0;right:0;top:0;height:72px;
     background:linear-gradient(180deg,var(--bg),rgba(10,10,11,0));
@@ -460,7 +483,7 @@
   .patent-foot .note{margin:0 0 0 auto;font-size:10.5px;color:#767676;letter-spacing:.02em}
 
   /* ---------- 联系 ---------- */
-  .contact{border-top:1px solid var(--line);padding:clamp(72px,12vh,140px) clamp(24px,5.5vw,88px) 48px;scroll-margin-top:76px}
+  .contact{border-top:1px solid var(--line);padding:clamp(72px,12vh,140px) clamp(24px,5.5vw,88px) 48px;scroll-margin-top:108px}
   .contact .idx{display:block;font-size:10px;letter-spacing:.22em;color:var(--accent);margin-bottom:clamp(18px,3vh,26px);font-variant-numeric:tabular-nums}
   .contact h2{margin:0 0 28px;font-size:clamp(32px,4.6vw,62px);font-weight:500;line-height:1.05;letter-spacing:-.01em}
   .contact h2 em{font-style:normal;color:var(--muted);display:block;font-size:11px;letter-spacing:.24em;margin-top:16px;text-transform:uppercase}
@@ -496,6 +519,7 @@
   .reveal.sm{transform:none;transition:opacity .9s cubic-bezier(.2,.7,.2,1)}
   @media (prefers-reduced-motion:reduce){
     html{scroll-behavior:auto}
+    .site-head{transition:none}
     #scrollProg{display:none}
     .reveal{opacity:1;transform:none;transition:none}
     .reveal.lg{filter:none}
@@ -516,6 +540,10 @@
 
   /* ---------- 响应式 ---------- */
   @media (max-width:900px){
+    .site-head{padding:6px 10px 0}
+    .head-promo{height:24px;font-size:9px;letter-spacing:.1em;margin-bottom:5px}
+    .head-bar{height:52px;border-radius:9px}
+    .head-notch{height:12px;width:clamp(56px,16vw,84px)}
     .hero{grid-template-columns:1fr}
     .hero-copy{padding:112px clamp(22px,6vw,48px) 48px}
     .hero-stage{min-height:74vh}
@@ -559,14 +587,22 @@
 <div id="scrollProg" aria-hidden="true"></div>
 
 <header class="site-head" id="siteHead">
-  <a class="brand" href="#top">董槟源<span>产品设计</span></a>
-  <nav class="head-nav">
-    <a href="#works">作品</a>
-    <a href="#patent">专利</a>
-    <a href="#capabilities">能力</a>
-    <a href="#contact">联系</a>
-    <a class="pill" href="mailto:1695766805@qq.com">发邮件</a>
-  </nav>
+  <div class="head-stack">
+    <a class="head-promo" href="work.html?p=wenshan">
+      <span class="dot"></span>SERIES 06 · 纹山 WENSHAN 已上线<em>→</em>
+    </a>
+    <div class="head-bar">
+      <a class="brand" href="#top">董槟源<span>产品设计</span></a>
+      <nav class="head-nav">
+        <a href="#works">作品</a>
+        <a href="#patent">专利</a>
+        <a href="#capabilities">能力</a>
+        <a href="#contact">联系</a>
+        <a class="pill" href="mailto:1695766805@qq.com">发邮件</a>
+      </nav>
+      <span class="head-notch" aria-hidden="true"></span>
+    </div>
+  </div>
 </header>
 
 <main>
@@ -898,11 +934,16 @@
 </main>
 
 <script>
-  // 顶部背景在滚动后出现
+  // 顶部刘海栏：下滑收起，上滑露出
   var head = document.getElementById('siteHead');
+  var lastY = window.scrollY;
   function onScroll(){
-    if (window.scrollY > 40) head.classList.add('solid');
-    else head.classList.remove('solid');
+    var y = window.scrollY;
+    var delta = y - lastY;
+    if (y < 160) head.classList.remove('hide');
+    else if (delta > 6) head.classList.add('hide');
+    else if (delta < -6) head.classList.remove('hide');
+    lastY = y;
   }
   window.addEventListener('scroll', onScroll, {passive:true});
   onScroll();
