@@ -51,18 +51,6 @@
   }
   .site-head.hide{transform:translateY(-115%)}
   .head-stack{max-width:1440px;margin:0 auto}
-  .head-promo{
-    display:flex;align-items:center;justify-content:center;gap:9px;
-    height:26px;margin-bottom:6px;border-radius:6px;
-    background:#D8D3C7;color:#1B1B19;border:1px solid rgba(0,0,0,.10);
-    font-size:10px;letter-spacing:.16em;
-    transition:background .25s;
-  }
-  .head-promo:hover{background:#E3DED3}
-  .head-promo:focus-visible{outline-color:#1B1B19}
-  .head-promo .dot{width:4px;height:4px;border-radius:50%;background:#1B1B19;opacity:.55}
-  .head-promo em{font-style:normal;font-size:11px;opacity:.75;transition:transform .25s}
-  .head-promo:hover em{transform:translateX(3px)}
   .head-bar{
     position:relative;display:flex;align-items:center;justify-content:space-between;
     height:56px;padding:0 clamp(14px,2vw,22px);border-radius:10px;
@@ -548,7 +536,6 @@
   /* ---------- 响应式 ---------- */
   @media (max-width:900px){
     .site-head{padding:6px 10px 0}
-    .head-promo{height:24px;font-size:9px;letter-spacing:.1em;margin-bottom:5px}
     .head-bar{height:52px;border-radius:9px}
     .head-notch{height:12px;width:clamp(40px,12vw,60px)}
     .hero{grid-template-columns:1fr}
@@ -599,9 +586,6 @@
 
 <header class="site-head" id="siteHead">
   <div class="head-stack">
-    <a class="head-promo" href="work.html?p=wenshan">
-      <span class="dot"></span>SERIES 06 · 纹山 WENSHAN 已上线<em>→</em>
-    </a>
     <div class="head-bar">
       <a class="brand" href="#top">董槟源<span>产品设计</span></a>
       <nav class="head-nav">
