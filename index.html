@@ -379,6 +379,11 @@
   }
   .series-grid figcaption span{font-size:9px;letter-spacing:.18em;color:var(--accent);flex:0 0 auto}
   .series-grid .series-lead{grid-column:1 / -1}
+  /* 预留图版比例，加载前不塌陷 */
+  .series[href*="p=toco"] .series-grid img{aspect-ratio:719 / 509}
+  .series[href*="p=zhibai"] .series-grid img{aspect-ratio:719 / 1080}
+  .series[href*="p=wenshan"] .series-grid img{aspect-ratio:719 / 509}
+  .series[href*="p=wenshan"] .series-lead img{aspect-ratio:1180 / 834}
 
   /* ---------- 能力 ---------- */
   .cap-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:clamp(14px,1.6vw,24px)}
@@ -517,6 +522,11 @@
   .work.reveal.md{transition:transform .45s,border-color .45s,opacity 1.05s cubic-bezier(.2,.7,.2,1),translate 1.05s cubic-bezier(.2,.7,.2,1)}
   /* 分档：小字（只淡入） */
   .reveal.sm{transform:none;transition:opacity .9s cubic-bezier(.2,.7,.2,1)}
+  /* 图片顺序加载：按 DOM 顺序逐张出现（JS 加 .seq 后才生效） */
+  html.seq .work-media img{opacity:0;transition:opacity .45s ease,transform .6s}
+  html.seq .work-media img.img-ready{opacity:1}
+  html.seq .series-grid img{opacity:0;transition:opacity .45s ease,transform .7s ease,filter .7s ease}
+  html.seq .series-grid img.img-ready{opacity:1}
   @media (prefers-reduced-motion:reduce){
     html{scroll-behavior:auto}
     .site-head{transition:none}
@@ -524,6 +534,8 @@
     .reveal{opacity:1;transform:none;transition:none}
     .reveal.lg{filter:none}
     .reveal.md{translate:none}
+    html.seq .work-media img,
+    html.seq .series-grid img{transition:none}
     .hero-copy{opacity:1;translate:none;scale:none}
     .hero-stage{opacity:1;translate:none}
     .stage-bg{translate:none}
@@ -579,6 +591,8 @@
     .hero-copy{padding:0 0 14mm}
     .work,.cap{border-color:#ddd;background:#fff}
     .reveal{opacity:1 !important;transform:none !important}
+    html.seq .work-media img,
+    html.seq .series-grid img{opacity:1 !important}
   }
 </style>
 </head>
@@ -1017,6 +1031,63 @@
     });
   }, {threshold:.12});
   document.querySelectorAll('.reveal').forEach(function(el){ io.observe(el); });
+
+  // 图片顺序出现：同一组内按 DOM 顺序，前一张就绪后才显示下一张
+  (function(){
+    if (!('IntersectionObserver' in window)) return;
+    var groups = [].slice.call(document.querySelectorAll('.works-grid, .series-grid'));
+    if (!groups.length) return;
+    document.documentElement.classList.add('seq');
+
+    var imgIO = new IntersectionObserver(function(entries){
+      entries.forEach(function(e){
+        if (!e.isIntersecting) return;
+        e.target.setAttribute('data-wanted', '1');
+        var g = e.target.closest('.works-grid, .series-grid');
+        if (g && g.seqState) pump(g.seqState);
+        imgIO.unobserve(e.target);
+      });
+    }, {rootMargin:'400px 0px'});
+
+    function show(img){
+      img.setAttribute('data-ready', '1');
+      img.classList.add('img-ready');
+    }
+
+    function waitThenShow(img, state){
+      var done = function(){
+        img.removeEventListener('load', done);
+        img.removeEventListener('error', done);
+        if (!img.getAttribute('data-ready')) show(img);
+        state.busy = false;
+        pump(state);
+      };
+      if (img.complete){ done(); return; }
+      img.addEventListener('load', done);
+      img.addEventListener('error', done);
+    }
+
+    function pump(state){
+      if (state.busy) return;
+      var next = null;
+      for (var i = 0; i < state.imgs.length; i++){
+        var im = state.imgs[i];
+        if (!im.getAttribute('data-wanted') || im.getAttribute('data-ready')) continue;
+        if (im.complete){ show(im); continue; }
+        next = im;
+        break;
+      }
+      if (!next) return;
+      state.busy = true;
+      waitThenShow(next, state);
+    }
+
+    groups.forEach(function(g){
+      var state = { imgs: [].slice.call(g.querySelectorAll('img')), busy: false };
+      g.seqState = state;
+      state.imgs.forEach(function(img){ imgIO.observe(img); });
+    });
+  })();
 </script>
 </body>
 </html>
