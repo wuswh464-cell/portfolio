@@ -87,9 +87,13 @@ document.addEventListener('error', function(e){
     border:1px solid transparent;border-radius:999px;
     padding:8px 16px;font-size:11px;letter-spacing:.08em;
     background:#0A0A0B;color:#F2F2EF;
-    transition:background .25s,color .25s;
+    font-family:inherit;line-height:1.4;cursor:pointer;-webkit-appearance:none;appearance:none;
+    transition:background .25s,color .25s,border-color .25s;
   }
   .pill:hover{background:#262626;color:#fff}
+  .pill.ghost{background:transparent;border-color:rgba(0,0,0,.24);color:#2E2E2A}
+  .pill.ghost:hover{background:rgba(0,0,0,.06);border-color:rgba(0,0,0,.4);color:#0B0B0C}
+  .pill.done,.pill.done:hover{background:#2F6B4F;color:#fff;border-color:transparent}
 
   /* ---------- Hero ---------- */
   .hero{
@@ -122,11 +126,14 @@ document.addEventListener('error', function(e){
     display:inline-flex;align-items:center;justify-content:center;
     height:44px;padding:0 24px;border-radius:999px;
     font-size:13px;letter-spacing:.06em;transition:.28s;
+    font-family:inherit;cursor:pointer;background:transparent;border:0;color:inherit;
+    -webkit-appearance:none;appearance:none;
   }
   .btn.solid{background:#EDEDED;color:#0A0A0B}
   .btn.solid:hover{background:#fff}
   .btn.ghost{border:1px solid rgba(255,255,255,.18);color:var(--ink)}
   .btn.ghost:hover{border-color:rgba(255,255,255,.4);background:var(--glass)}
+  .btn.done,.btn.done:hover{border-color:rgba(99,190,140,.6);color:#8FD3AC;background:rgba(47,107,79,.16)}
 
   /* ---------- Hero 右侧舞台 ---------- */
   .hero-stage{
@@ -574,8 +581,18 @@ document.addEventListener('error', function(e){
   }
   @media (max-width:640px){
     .head-nav a:not(.pill){display:none}
+    .head-nav{gap:6px}
+    .head-nav .pill{padding:7px 11px;font-size:10.5px}
+    .head-notch{width:30px;height:12px}
     .stage-label{font-size:9px}
     .plate-cap em{text-align:left}
+  }
+  @media (max-width:380px){
+    .head-nav{gap:4px}
+    .head-nav .pill{padding:7px 10px}
+  }
+  @media (max-width:345px){
+    .head-notch{display:none}
   }
 
   /* ---------- 打印 ---------- */
@@ -606,7 +623,8 @@ document.addEventListener('error', function(e){
         <a href="#patent">专利</a>
         <a href="#capabilities">能力</a>
         <a href="#contact">联系</a>
-        <a class="pill" href="mailto:1695766805@qq.com">发邮件</a>
+        <button class="pill" type="button" data-copy="1695766805@qq.com" title="点击复制邮箱">复制邮件</button>
+        <button class="pill ghost" type="button" data-copy="waw1233215679" title="点击复制微信号">复制微信</button>
       </nav>
       <span class="head-notch" aria-hidden="true"></span>
     </div>
@@ -623,7 +641,7 @@ document.addEventListener('error', function(e){
       <p class="hero-sub">让复杂的事情，用起来简单一点。</p>
       <div class="hero-actions">
         <a class="btn solid" href="#works">查看作品</a>
-        <a class="btn ghost" href="mailto:1695766805@qq.com">发邮件</a>
+        <button class="btn ghost" type="button" data-copy="1695766805@qq.com">复制邮件</button>
       </div>
     </div>
 
@@ -1064,6 +1082,49 @@ document.addEventListener('error', function(e){
       var state = { imgs: [].slice.call(g.querySelectorAll('img')), busy: false };
       g.seqState = state;
       state.imgs.forEach(function(img){ imgIO.observe(img); });
+    });
+  })();
+  // 复制邮箱 / 微信号：点击写入剪贴板，并给出短暂反馈
+  (function(){
+    function fallback(text, done){
+      var ta = document.createElement('textarea');
+      ta.value = text;
+      ta.setAttribute('readonly', '');
+      ta.style.cssText = 'position:fixed;top:0;left:0;width:1px;height:1px;opacity:0';
+      document.body.appendChild(ta);
+      ta.select();
+      ta.setSelectionRange(0, 9999);
+      var ok = false;
+      try { ok = document.execCommand('copy'); } catch (err) {}
+      document.body.removeChild(ta);
+      if (!ok) window.prompt('复制以下内容', text);
+      done(ok);
+    }
+
+    function copy(text, btn){
+      var label = btn.getAttribute('data-label') || btn.textContent;
+      btn.setAttribute('data-label', label);
+      var done = function(ok){
+        btn.textContent = ok ? '已复制' : '手动复制';
+        btn.classList.add('done');
+        clearTimeout(btn._t);
+        btn._t = setTimeout(function(){
+          btn.textContent = label;
+          btn.classList.remove('done');
+        }, 1500);
+      };
+      if (navigator.clipboard && navigator.clipboard.writeText){
+        navigator.clipboard.writeText(text).then(function(){ done(true); }, function(){ fallback(text, done); });
+      } else {
+        fallback(text, done);
+      }
+    }
+
+    document.addEventListener('click', function(e){
+      var btn = e.target.closest ? e.target.closest('[data-copy]') : null;
+      if (!btn) return;
+      e.preventDefault();
+      copy(btn.getAttribute('data-copy'), btn);
     });
   })();
 </script>
