@@ -281,46 +281,24 @@
   .sec-head h2{margin:0;font-size:clamp(26px,3.6vw,44px);font-weight:500;letter-spacing:-.01em}
   .sec-head .en{margin-left:auto;font-size:10px;letter-spacing:.24em;color:var(--muted);text-transform:uppercase}
 
-  /* ---------- 理念章节（钉住 + 三句轮换） ---------- */
-  .mantra{height:300vh;position:relative;border-top:1px solid var(--line);background:var(--bg)}
-  .mantra-sticky{position:sticky;top:0;height:100vh;display:grid;place-items:center;overflow:hidden}
+  /* ---------- 理念章节（三句陈述，常规定高，不钉住） ---------- */
+  .mantra{
+    position:relative;border-top:1px solid var(--line);background:var(--bg);
+    padding:clamp(88px,14vh,150px) clamp(24px,5.5vw,88px);
+    scroll-margin-top:108px;
+  }
+  .mantra-inner{max-width:1040px;margin:0 auto}
   .mantra-head{
-    position:absolute;left:clamp(24px,5.5vw,88px);top:clamp(84px,10vh,104px);
+    display:flex;align-items:baseline;justify-content:space-between;gap:16px;
+    margin-bottom:clamp(32px,6vh,60px);
     font-size:10px;letter-spacing:.24em;color:var(--muted);text-transform:uppercase;
   }
   .mantra-head .no{color:var(--accent);letter-spacing:.22em}
-  .mantra-stage{position:relative;width:min(92vw,980px);height:clamp(180px,26vh,240px)}
-  .m-line{
-    position:absolute;inset:0;
-    display:flex;flex-direction:column;align-items:center;justify-content:center;
-    gap:clamp(14px,2.4vh,22px);text-align:center;
-    will-change:opacity,translate;
-  }
-  .m-line b{font-weight:500;font-size:10px;letter-spacing:.28em;color:var(--accent)}
+  .mantra-lines{display:flex;flex-direction:column;gap:clamp(26px,4.6vh,50px)}
+  .m-line{margin:0;display:flex;align-items:baseline;gap:clamp(14px,2.2vw,30px)}
+  .m-line b{flex:0 0 auto;font-weight:500;font-size:10px;letter-spacing:.28em;color:var(--accent);translate:0 -.35em}
+  .m-line span{font-size:clamp(30px,4.4vw,64px);font-weight:500;line-height:1.25;letter-spacing:.01em}
   .br-m{display:none}
-  .m-line p{margin:0;max-width:16em;font-size:clamp(30px,4vw,60px);font-weight:500;line-height:1.3;letter-spacing:.02em}
-  .mantra-prog{
-    position:absolute;left:50%;bottom:clamp(28px,6vh,56px);transform:translateX(-50%);
-    display:flex;gap:10px;
-  }
-  .mantra-prog i{display:block;width:26px;height:2px;background:var(--line);transition:background .35s}
-  .mantra-prog[data-step="0"] i:nth-child(1),
-  .mantra-prog[data-step="1"] i:nth-child(2),
-  .mantra-prog[data-step="2"] i:nth-child(3){background:var(--accent)}
-
-  /* 三句编排：窗口内前 40% 升起；句 1/2 末 20% 淡出，句 3 停留到章节结束 */
-  .mantra .m-line:nth-child(1){
-    opacity:clamp(0,min(var(--mx,0) * 7.5,(.3333 - var(--mx,0)) * 15),1);
-    translate:0 calc(30px - clamp(0px,var(--mx,0) * 225px,30px));
-  }
-  .mantra .m-line:nth-child(2){
-    opacity:clamp(0,min((var(--mx,0) - .3333) * 7.5,(.6667 - var(--mx,0)) * 15),1);
-    translate:0 calc(30px - clamp(0px,(var(--mx,0) - .3333) * 225px,30px));
-  }
-  .mantra .m-line:nth-child(3){
-    opacity:clamp(0,(var(--mx,0) - .6667) * 7.5,1);
-    translate:0 calc(30px - clamp(0px,(var(--mx,0) - .6667) * 225px,30px));
-  }
 
   /* ---------- 作品 ---------- */
   .works-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:clamp(14px,1.6vw,24px)}
@@ -564,13 +542,6 @@
     .hero-stage{opacity:1;translate:none}
     .stage-bg{translate:none}
     .tilt,.stage-bg{animation:none}
-    /* 理念章节降级为静态竖排 */
-    .mantra{height:auto}
-    .mantra-sticky{position:static;height:auto;display:block;padding:clamp(72px,12vh,140px) clamp(24px,5.5vw,88px)}
-    .mantra-head{position:static;margin-bottom:clamp(24px,5vh,40px)}
-    .mantra-stage{width:auto;height:auto}
-    .mantra .m-line:nth-child(n){position:relative;inset:auto;opacity:1;translate:none;padding:clamp(16px,3vh,26px) 0}
-    .mantra-prog{display:none}
     /* 卡片保留翻转：正反面信息都在这张名片上 */
   }
 
@@ -594,8 +565,10 @@
     .hero-copy{translate:0 calc(var(--hx,0) * -28px)}
     .hero-stage{translate:0 calc(max(0,var(--hx,0) - .25) * 32px)}
     .stage-bg{translate:0 calc(var(--hx,0) * 45px)}
-    .mantra{height:260vh}
-    .m-line p{font-size:clamp(26px,7.2vw,44px)}
+    .mantra{padding:clamp(72px,12vh,110px) clamp(22px,6vw,48px)}
+    .m-line{flex-direction:column;gap:10px}
+    .m-line b{translate:0 0}
+    .m-line span{font-size:clamp(26px,7.2vw,44px)}
     .br-m{display:inline}
     .sec-head .en{margin-left:0;flex:0 0 100%}
   }
@@ -699,14 +672,16 @@
 
   <!-- ============ 理念 ============ -->
   <section class="mantra" id="mantra">
-    <div class="mantra-sticky">
-      <div class="mantra-head"><span class="no">Design Belief</span></div>
-      <div class="mantra-stage">
-        <div class="m-line"><b>01</b><p>先尊重约束。</p></div>
-        <div class="m-line"><b>02</b><p>把约束翻译成<br class="br-m">结构与交互。</p></div>
-        <div class="m-line"><b>03</b><p>让复杂的事情，<br class="br-m">用起来简单一点。</p></div>
+    <div class="mantra-inner">
+      <div class="mantra-head reveal sm">
+        <span class="no">Design Belief</span>
+        <span class="en">03 Statements</span>
       </div>
-      <div class="mantra-prog" data-step="0" aria-hidden="true"><i></i><i></i><i></i></div>
+      <div class="mantra-lines">
+        <p class="m-line reveal lg"><b>01</b><span>先尊重约束。</span></p>
+        <p class="m-line reveal lg"><b>02</b><span>把约束翻译成<br class="br-m">结构与交互。</span></p>
+        <p class="m-line reveal lg"><b>03</b><span>让复杂的事情，<br class="br-m">用起来简单一点。</span></p>
+      </div>
     </div>
   </section>
 
@@ -986,21 +961,13 @@
   window.addEventListener('scroll', onScroll, {passive:true});
   onScroll();
 
-  // 滚动驱动变量：--sy 全页进度 / --hx hero 离场进度 / --mx 理念章节进度
+  // 滚动驱动变量：--sy 全页进度 / --hx hero 离场进度
   var docEl = document.documentElement;
   var heroEl = document.querySelector('.hero');
   var heroH = (heroEl && heroEl.offsetHeight) || 1;
-  var mantraEl = document.getElementById('mantra');
-  var mantraProg = document.querySelector('.mantra-prog');
-  var mantraTop = 0;
-  var mantraH = 1;
   var reduceMotion = window.matchMedia('(prefers-reduced-motion:reduce)').matches;
   function measureLayout(){
     heroH = (heroEl && heroEl.offsetHeight) || 1;
-    if (mantraEl){
-      mantraTop = mantraEl.getBoundingClientRect().top + window.scrollY;
-      mantraH = mantraEl.offsetHeight || 1;
-    }
   }
   window.addEventListener('resize', measureLayout);
   window.addEventListener('load', measureLayout);
@@ -1012,22 +979,12 @@
       var hx = Math.min(1, Math.max(0, window.scrollY / (heroH * .9)));
       docEl.style.setProperty('--sy', sy.toFixed(4));
       docEl.style.setProperty('--hx', hx.toFixed(4));
-      if (mantraEl){
-        var span = mantraH - window.innerHeight;
-        var mx = span > 0 ? (window.scrollY - mantraTop) / span : 0;
-        mx = Math.min(1, Math.max(0, mx));
-        docEl.style.setProperty('--mx', mx.toFixed(4));
-        var step = mx < .3333 ? 0 : (mx < .6667 ? 1 : 2);
-        if (mantraProg && mantraProg.getAttribute('data-step') !== String(step)){
-          mantraProg.setAttribute('data-step', step);
-        }
-      }
       requestAnimationFrame(tick);
     })();
   }
 
   // 同一批进入的卡片错峰（0 / 80 / 160ms…，上限 320ms）
-  var batchClasses = ['works-grid','series-grid','patent-grid','cap-grid'];
+  var batchClasses = ['works-grid','series-grid','patent-grid','cap-grid','mantra-lines'];
   function revealDelay(el){
     var parent = el.parentElement;
     if (!parent) return 0;
