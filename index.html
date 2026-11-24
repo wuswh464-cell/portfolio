@@ -54,13 +54,13 @@
   .head-promo{
     display:flex;align-items:center;justify-content:center;gap:9px;
     height:26px;margin-bottom:6px;border-radius:6px;
-    background:#A63A28;color:#FBF1ED;
+    background:#D8D3C7;color:#1B1B19;border:1px solid rgba(0,0,0,.10);
     font-size:10px;letter-spacing:.16em;
     transition:background .25s;
   }
-  .head-promo:hover{background:#B8442F}
-  .head-promo:focus-visible{outline-color:#FBF1ED}
-  .head-promo .dot{width:4px;height:4px;border-radius:50%;background:#FBF1ED;opacity:.85}
+  .head-promo:hover{background:#E3DED3}
+  .head-promo:focus-visible{outline-color:#1B1B19}
+  .head-promo .dot{width:4px;height:4px;border-radius:50%;background:#1B1B19;opacity:.55}
   .head-promo em{font-style:normal;font-size:11px;opacity:.75;transition:transform .25s}
   .head-promo:hover em{transform:translateX(3px)}
   .head-bar{
@@ -73,7 +73,7 @@
   }
   .head-notch{
     position:absolute;left:50%;top:0;transform:translateX(-50%);
-    width:clamp(64px,10vw,112px);height:13px;
+    width:clamp(48px,7vw,80px);height:13px;
     background:var(--bg);border-radius:0 0 9px 9px;
     pointer-events:none;
   }
@@ -543,7 +543,7 @@
     .site-head{padding:6px 10px 0}
     .head-promo{height:24px;font-size:9px;letter-spacing:.1em;margin-bottom:5px}
     .head-bar{height:52px;border-radius:9px}
-    .head-notch{height:12px;width:clamp(56px,16vw,84px)}
+    .head-notch{height:12px;width:clamp(40px,12vw,60px)}
     .hero{grid-template-columns:1fr}
     .hero-copy{padding:112px clamp(22px,6vw,48px) 48px}
     .hero-stage{min-height:74vh}
