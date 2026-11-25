@@ -143,6 +143,13 @@ document.addEventListener('error', function(e){
   .plates{display:grid;gap:clamp(34px,5.5vh,62px)}
   .plate-note{margin:0 0 clamp(22px,3vh,32px);max-width:62ch;font-size:13px;line-height:1.85;color:#9C9C9C}
 
+  /* ---------- 研究背景 ---------- */
+  .research{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:clamp(20px,3vw,38px)}
+  .research-item{padding-top:15px;border-top:1px solid var(--line)}
+  .research-item span{display:block;margin-bottom:9px;font-size:9px;letter-spacing:.2em;color:var(--accent)}
+  .research-item h3{margin:0 0 9px;font-size:clamp(14px,1.3vw,16px);font-weight:500;line-height:1.55}
+  .research-item p{margin:0;font-size:13px;line-height:1.95;color:#9C9C9C}
+
   /* ---------- UI 项目：手机样机流 ---------- */
   .plates.screens{
     grid-template-columns:repeat(3,minmax(0,1fr));
@@ -251,6 +258,7 @@ document.addEventListener('error', function(e){
   @media (max-width:900px){
     .facts{grid-template-columns:repeat(2,minmax(0,1fr))}
     .plates.screens{grid-template-columns:repeat(2,minmax(0,1fr))}
+    .research{grid-template-columns:1fr}
     .facts div:nth-child(3){border-left:0;padding-left:0}
     .facts div:nth-child(n+3){border-top:1px solid var(--line)}
     .s{grid-template-columns:1fr}
@@ -303,6 +311,14 @@ document.addEventListener('error', function(e){
     </figure>
 
     <dl class="facts" id="facts"></dl>
+  </section>
+
+  <section class="s" id="researchSec" hidden>
+    <div class="s-side"><b>00</b><span>背景 / CONTEXT</span></div>
+    <div class="s-body">
+      <h2>问题从哪来</h2>
+      <div class="research" id="research"></div>
+    </div>
   </section>
 
   <section class="s">
@@ -511,32 +527,39 @@ document.addEventListener('error', function(e){
     kuaidi:{
       no:'07',
       kind:'ui',
-      cat:'移动应用 UI · 设计规范',
+      cat:'适老化 APP UI · 设计规范',
       title:'方便快递 · APP UI 设计',
-      en:'EXPRESS DELIVERY APP · UI / UX',
-      lede:'把一次寄件拆成六个屏幕：从启动到下单，从运输到签收。先立 8px 栅格、色彩与字阶，再让每一屏只回答一个问题。',
+      en:'EXPRESS DELIVERY APP · AGE-FRIENDLY UI',
+      lede:'为 65 岁、只会接打电话和刷短视频的张大爷做一次原生适老化设计：寄件链路压到三步，字号从 22 到 78 分五级，触控热区统一 88×88，整屏只有一个「看起来能点」的颜色。先立规范再画六屏，把「学习界面」变成「确认操作」。',
       img:'assets/kuaidi-hero.webp',
       facts:[
-        ['类别','移动应用 UI / 交互设计'],
-        ['平台','iOS · 375pt 逻辑宽度 · @3x 切图'],
-        ['规范','8px 栅格 · 88×88 触控热区 · 5 级字阶'],
-        ['交付','6 个核心页面 · 完整设计规范']
+        ['项目','移动应用 UI / 适老化改造'],
+        ['人群','退休老人 · 大学生 · 大学教授'],
+        ['方法','三类画像推导 · 五层模型竞品分析'],
+        ['规范','8px 栅格 · 88×88 热区 · 五级字阶']
       ],
-      quote:'UI 设计的难点不是把画面画好看，而是让下一个人接手时，不用再问「这里为什么是 16px」。',
+      quote:'适老化不是把字放大一点，而是承认用户的能力边界，再把这条边界写进规范——让「看清」和「敢点」不再是一项任务。',
       points:[
-        {h:'先立规则，再排页面',p:'8px 栅格、控件高度 40 / 88 / 98、触控热区 88×88、五级字阶——这些先定下来，六个页面才不会各长各的。规范不是交付附件，是设计过程本身。'},
-        {h:'一屏只留一个主动作',p:'运费计算页把「立即计算」做成全屏唯一的高饱和色块，结果金额紧随其后。用户在这一屏要做的判断只有一件：算不算。'},
-        {h:'用色彩做层级，不用线条',p:'主色 #EE773D 只给主动作与关键数据，其余靠留白、字号和灰度分层。列表尽量去边框，靠间距建立秩序，界面才轻。'},
-        {h:'为三种人做取舍',p:'退休老人要简单可靠、大学生要冷链时效、老师要价格透明。首页把六宫格高频入口前置，新人券放在第一屏能被扫到的位置——三种诉求在同一屏里各有落点。'}
+        {h:'设计重点：一条主链路，三类人的三种不安',p:'产品定位是四个模块——寄快递（上门取件 · 冷链速运）、快递查（实时追踪 · 优惠寄件）、地址与订单（地址管理 · 运费预估）、服务中心（客服直连 · 账号管理）。它们对应的不是抽象的「用户」，而是三类具体的人：退休老人怕出错，要简单可靠；大学生寄生鲜，要冷链与时效；大学教授要算清账，要价格透明。所以首页的六宫格不是功能罗列，是三种不安的并列答案；六个页面也不是六张效果图，是同一件事在六种状态下的回答。'},
+        {h:'为什么字要这么大：字号不是尺寸，是优先级',p:'22 到 78 的五个台阶，每一级都有明确职责：78px 只出现在首页无内容时的问候语，是整屏唯一的情绪位；34px 给导航标题与运费结果 ¥12.00；32px 给选中态与弹窗标题；28px 给运单号、城市名这类列表主标题；22px 是下限，只做时间戳与占位提示。行业默认的 14px 正文在这里没有位置——人过 40 岁，晶状体调节力逐年下降、近点不断外移，到 60 岁前后，正常阅读距离下的最小可辨字号明显变大；把 14px 交给老人，等于让他在猜。做大不是等比放大，而是让「钱的数字」和「下一步」在视野里先跳出来。最小 22px，仍高于工信部适老化规范 18px 的下限。'},
+        {h:'为什么图标和按钮要这么大：手指的容错决定敢不敢点',p:'视觉尺寸和触控尺寸是两件事：图标可以按视觉节奏收小，但热区统一 88×88，正好是 Apple HIG 44pt 与 Material 48dp 常规下限的两倍。原因是老年人的指腹接触面约 8–10mm，手抖与关节僵硬还会让落点在目标周围再漂移几毫米；按 Fitts 定律，目标越大、越近，命中越快、越少出错。核心按钮做满 88 高、主色整块填充，次要操作压到 40，但四周留白把热区补回来。误触一次，对年轻人是重来，对老人是放弃——大不是风格，是容错率。'},
+        {h:'为什么只用一种主色：橙色是行动色，不是阅读色',p:'整屏只有一个「看起来能点」的颜色。#EE773D 只给主动作与关键结论，#E68A23 退一级做次级层次，其余全部交给黑白。正文一律用纯黑，因为实测橙在白底上的对比度只有 2.86:1，够不上 4.5:1 的阅读准入，而黑字白底是 21:1。这不是审美取舍，是可读性算出来的结论：把颜色留给决策，把对比度留给阅读。橙色同时是快递行业的直觉色——速度与温度，跨年龄不需要重新学习。'},
+        {h:'为什么先立规范再画页面：一致就是安全感',p:'顺序是 8px 栅格 → 控件高度 40 / 88 / 98 → 间距 16 / 24 / 88 → 22–78 五级字阶，规则定完才开始排第一屏。8px 基数在 @2x、@3x 下分别落成 16 与 24 个物理像素，永远是整数，不会出现半像素发虚；同一套规则还要同时盖住 320 / 375 / 414 三种逻辑宽度。对老年用户来说，「上次在哪、这次还在哪」比「好不好看」重要得多——一致性就是可预期，可预期才敢用。'}
       ],
-      note:'六屏按寄件流程读：启动 → 首页 → 运费计算 → 物流详情 → 登录注册 → 个人中心。每屏遵循同一套 8px 栅格与 88×88 触控热区，点击任意屏幕可放大。',
+      note:'六屏按一次寄件的真实路径排列，每屏只承担一个职责：启动页立品牌心智，首页做流量枢纽，运费计算是决策页，物流详情是时间轴，登录注册提供多维入口，个人中心管全周期。字号、热区、间距全部来自同一套规范，点击任意屏幕可放大查看。',
+      research:[
+        {h:'起点：一箱寄不出去的苹果',p:'65 岁的张大爷想给城里的孙子寄一箱自家种的苹果。他有智能手机，只会接打电话和刷短视频：找不到寄件入口，填不了省市区三级地址，不知道箱子多重、运费多少，更怕点错支付。数字鸿沟不是因为「不会用」，而是没有人按他的能力去设计。'},
+        {h:'人群：三类人，三种不安',p:'退休老人注重简单可靠，对应适老化改造；大学生寄生鲜讲时效，对应冷链速运；大学教授关注价格与服务，对应运费预估。设计没有只服务最熟练的那一个：首页把六宫格高频入口前置，新人券放第一屏能被扫到的位置，运费计算页把金额放到 34px——三种诉求在同一套层级里各有落点，而不是靠三套界面分别满足。'},
+        {h:'竞品：三家都没有长辈模式',p:'横向对比顺丰、邮政、菜鸟（五层模型）：三家均无独立长辈模式、无语音输入地址；邮政层级最深（寄件超过五步），菜鸟按钮最大但寄件入口最弱。适老化停留在被动响应，市场存在明确的设计真空。'},
+        {h:'策略：把「学习界面」降成「确认操作」',p:'核心只做三件事：高频入口前置、操作步长压到三步、能用默认值和系统判断的地方就不让用户输入。视觉上把关键决策放大、把装饰收敛，让用户从「研究界面怎么用」变成「确认下一步对不对」——这一步转过来，学习成本就从每次使用变成了第一次使用。'}
+      ],
       screens:[
         {src:'assets/kuaidi-01.jpg', cap:'启动页　品牌心智 · Logo 与 Slogan'},
-        {src:'assets/kuaidi-02.jpg', cap:'首页　六宫格高频入口 · 新人券'},
-        {src:'assets/kuaidi-03.jpg', cap:'运费计算　表单填写与结果联动'},
-        {src:'assets/kuaidi-04.jpg', cap:'物流详情　垂直时间轴 · 起止城市'},
-        {src:'assets/kuaidi-05.jpg', cap:'登录注册　手机号与微信双入口'},
-        {src:'assets/kuaidi-06.jpg', cap:'个人中心　订单状态与服务分组'}
+        {src:'assets/kuaidi-02.jpg', cap:'首页　流量枢纽 · 六宫格高频入口'},
+        {src:'assets/kuaidi-03.jpg', cap:'运费计算　决策页 · 表单与结果联动'},
+        {src:'assets/kuaidi-04.jpg', cap:'物流详情　时间轴 · 起止城市与节点'},
+        {src:'assets/kuaidi-05.jpg', cap:'登录注册　多维入口 · 手机号与微信'},
+        {src:'assets/kuaidi-06.jpg', cap:'个人中心　全周期管理 · 订单与服务'}
       ],
       spec:{
         colors:[
@@ -546,17 +569,18 @@ document.addEventListener('error', function(e){
           ['文字 · 纯黑','#000000']
         ],
         type:[
-          ['超大','78px','情感化占位问候'],
-          ['重要','34 / 40','导航标题 · 核心数据'],
+          ['超大','78px','首页无内容问候 · 唯一情绪位'],
+          ['重要','34 / 40','导航标题 · 运费结果'],
           ['次重要','32 / 40','选中态 · 弹窗标题'],
-          ['常规','28 / 38','列表主标题'],
-          ['辅助','22 / 32','注释与标签']
+          ['常规','28 / 38','运单号 · 城市名'],
+          ['辅助','22 / 32','时间戳 · 占位提示']
         ],
         grid:[
           ['栅格基数','8px'],
           ['控件高度','40 · 88 · 98'],
           ['间距规范','16 / 24 / 88'],
-          ['触控热区','88 × 88']
+          ['触控热区','88 × 88'],
+          ['适配宽度','320 · 375 · 414']
         ]
       }
     }
@@ -578,6 +602,13 @@ document.addEventListener('error', function(e){
   set('quote', p.quote);
   set('barCount', 'CASE ' + p.no + ' / ' + ('0' + order.length).slice(-2));
   document.title = p.title + '｜董槟源';
+
+  if (p.research){
+    document.getElementById('researchSec').hidden = false;
+    document.getElementById('research').innerHTML = p.research.map(function(r,i){
+      return '<div class="research-item"><span>' + ('0' + (i+1)).slice(-2) + '</span><h3>' + r.h + '</h3><p>' + r.p + '</p></div>';
+    }).join('');
+  }
 
   // 原图宽度（用于 srcset 描述符）
   function fullW(stem){
