@@ -387,6 +387,8 @@ document.addEventListener('error', function(e){
   .series[href*="p=zhibai"] .series-grid img{aspect-ratio:719 / 1080}
   .series[href*="p=wenshan"] .series-grid img{aspect-ratio:719 / 509}
   .series[href*="p=wenshan"] .series-lead img{aspect-ratio:1180 / 834}
+  .series[href*="p=kuaidi"] .series-grid{grid-template-columns:repeat(3,minmax(0,1fr))}
+  .series[href*="p=kuaidi"] .series-grid img{aspect-ratio:375 / 812;object-fit:cover;object-position:top;background:#fff}
 
   /* ---------- 能力 ---------- */
   .cap-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:clamp(14px,1.6vw,24px)}
@@ -581,6 +583,7 @@ document.addEventListener('error', function(e){
     .head-notch{width:30px;height:12px}
     .stage-label{font-size:9px}
     .plate-cap em{text-align:left}
+    .series[href*="p=kuaidi"] .series-grid{grid-template-columns:repeat(2,minmax(0,1fr))}
   }
   @media (max-width:380px){
     .head-nav{gap:4px}
@@ -830,6 +833,44 @@ document.addEventListener('error', function(e){
         <figure>
           <img src="assets/wenshan-05-1100.webp" srcset="assets/wenshan-05-1100.avif 1100w, assets/wenshan-05-1440.avif 1440w, assets/wenshan-05.avif 1491w" sizes="(max-width:900px) calc(100vw - 48px), 48vw" alt="纹山展板 05：茶生活与空间体验" loading="lazy" decoding="async">
           <figcaption><span>05</span>茶生活与空间体验</figcaption>
+        </figure>
+      </div>
+    </a>
+
+    <a class="series reveal md" href="work.html?p=kuaidi">
+      <div class="series-top">
+        <div class="main">
+          <span class="no">SERIES 07 / 2026 · UI</span>
+          <h3>方便快递 · APP UI 设计</h3>
+          <span class="en">Express Delivery App · UI / UX · 6 Screens</span>
+          <p>把一次寄件拆成六个屏幕：从启动到下单，从运输到签收。先立 8px 栅格、色彩与字阶，再让每一屏只回答一个问题。主色 #EE773D 只给主动作，界面其余部分交给留白。</p>
+        </div>
+        <span class="cue">查看系列 <i>→</i></span>
+      </div>
+      <div class="series-grid">
+        <figure>
+          <img src="assets/kuaidi-01-1100.webp" srcset="assets/kuaidi-01-560.avif 560w, assets/kuaidi-01-1100.avif 1100w" sizes="(max-width:640px) 44vw, (max-width:900px) calc(50vw - 30px), 29vw" alt="方便快递 APP 启动页" loading="lazy" decoding="async">
+          <figcaption><span>01</span>启动页 · 品牌心智</figcaption>
+        </figure>
+        <figure>
+          <img src="assets/kuaidi-02-1100.webp" srcset="assets/kuaidi-02-560.avif 560w, assets/kuaidi-02-1100.avif 1100w" sizes="(max-width:640px) 44vw, (max-width:900px) calc(50vw - 30px), 29vw" alt="方便快递 APP 首页" loading="lazy" decoding="async">
+          <figcaption><span>02</span>首页 · 高频入口</figcaption>
+        </figure>
+        <figure>
+          <img src="assets/kuaidi-03-1100.webp" srcset="assets/kuaidi-03-560.avif 560w, assets/kuaidi-03-1100.avif 1100w" sizes="(max-width:640px) 44vw, (max-width:900px) calc(50vw - 30px), 29vw" alt="方便快递 APP 运费计算页" loading="lazy" decoding="async">
+          <figcaption><span>03</span>运费计算 · 结果联动</figcaption>
+        </figure>
+        <figure>
+          <img src="assets/kuaidi-04-1100.webp" srcset="assets/kuaidi-04-560.avif 560w, assets/kuaidi-04-1100.avif 1100w" sizes="(max-width:640px) 44vw, (max-width:900px) calc(50vw - 30px), 29vw" alt="方便快递 APP 物流详情页" loading="lazy" decoding="async">
+          <figcaption><span>04</span>物流详情 · 时间轴</figcaption>
+        </figure>
+        <figure>
+          <img src="assets/kuaidi-05-1100.webp" srcset="assets/kuaidi-05-560.avif 560w, assets/kuaidi-05-1100.avif 1100w" sizes="(max-width:640px) 44vw, (max-width:900px) calc(50vw - 30px), 29vw" alt="方便快递 APP 登录注册页" loading="lazy" decoding="async">
+          <figcaption><span>05</span>登录注册 · 双入口</figcaption>
+        </figure>
+        <figure>
+          <img src="assets/kuaidi-06-1100.webp" srcset="assets/kuaidi-06-560.avif 560w, assets/kuaidi-06-1100.avif 1100w" sizes="(max-width:640px) 44vw, (max-width:900px) calc(50vw - 30px), 29vw" alt="方便快递 APP 个人中心页" loading="lazy" decoding="async">
+          <figcaption><span>06</span>个人中心 · 全周期</figcaption>
         </figure>
       </div>
     </a>
